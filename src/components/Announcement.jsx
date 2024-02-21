@@ -15,6 +15,9 @@ const Container = styled.div`
   font-size: 14px;
   font-weight: 500;
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
 `
 const Wrapper = styled.div`
   height: 100%;

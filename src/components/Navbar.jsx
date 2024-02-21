@@ -7,6 +7,12 @@ import { tablet } from '@/responsive'
 /* 版型 */
 const Container = styled.div`
   height: 60px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px rgba(204, 204, 204, 0.1); 
+  margin-top: 30px;
   ${tablet({ height: '50px' })};
 `
 const Wrapper = styled.div`
