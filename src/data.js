@@ -16,7 +16,7 @@ export const sliderItems = [
   {
     id: 1,
     imgUrl: './images/slide02.png',
-    title: '一次滿足保暖需求',
+    title: '滿足保暖需求',
     desc: '韓系立領鋪棉麵包外套 新上架',
     bg: '#fcf1ed',
   },
@@ -30,7 +30,7 @@ export const sliderItems = [
 ]
 export const announceList = [
   {
-    title: '滿額免運：購物滿1,500元，運費全免，立即行動！(限台澎金馬)',
+    title: '滿額免運：購物滿1,500元，運費全免 / 限台澎金馬',
     url: '#1',
   },
   {
@@ -38,7 +38,7 @@ export const announceList = [
     url: '#2',
   },
   {
-    title: '加入新會員，領取100元購物金',
+    title: '加入新會員，領取100元購物金，立即行動！',
     url: '#3',
   },
 ]
