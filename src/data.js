@@ -1,3 +1,12 @@
+export const shopInfo = {
+  shopName: 'RE-START SHOP',
+  shopTWName: '漾活有限公司',
+  desc: 'RE-START 專注提供時尚、高品質商品，為您帶來全新體驗。精選服飾單品讓您展現自信與美麗，如同對生活的正向與熱情。',
+  address: '10491台北市中山區玉門街1號',
+  tel: '02-22514679',
+  mail: 'customer@restart.com',
+}
+
 export const sliderItems = [
   {
     id: 3,

@@ -1,4 +1,5 @@
 export * from './PageLayout'
+export * from './Footer'
 export * from './Announcement'
 export * from './Navbar'
 export * from './Slider'
