@@ -7,8 +7,8 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   ${tablet({
-  maxHeight: '50vh',
-})}
+    maxHeight: '50vh',
+  })}
 `
 const Image = styled.img`
   width: 100%;

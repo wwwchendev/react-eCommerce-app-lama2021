@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { announceList } from '@/data'
 
-const itemHeight = '30';
-const animationDuration = '2000';
+const itemHeight = '30'
+const animationDuration = '2000'
 
 const Container = styled.div`
   height: ${itemHeight}px;
