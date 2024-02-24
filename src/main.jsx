@@ -6,6 +6,8 @@ import ProductList from '@/pages/ProductList'
 import NotFound from '@/pages/NotFound'
 import { OffsetProvider } from '@/context/OffsetContext'
 import Product from './pages/Product'
+import Register from './pages/Register'
+import Login from './pages/Login'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <Product />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '*',
