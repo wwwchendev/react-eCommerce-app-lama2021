@@ -106,7 +106,7 @@ export const Navbar = () => {
         <Right>
           <MenuItem
             onClick={() => {
-              navigate('/signup')
+              navigate('/register')
             }}
           >
             註冊
