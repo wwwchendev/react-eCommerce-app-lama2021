@@ -109,11 +109,21 @@ const Desc = styled.p`
 `
 
 const Button = styled.button`
-  padding: 10px;
+  padding: 10px 10px 10px 10px;
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
   user-select: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.8s ease;
+  &:hover {
+    padding: 10px 12px 10px 20px;
+    letter-spacing: 12px;
+    opacity: 0.6;
+  }
   &:active {
     transform: scale(0.98);
   }

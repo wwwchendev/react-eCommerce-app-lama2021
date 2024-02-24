@@ -7,6 +7,7 @@ import { mobile } from '../responsive'
 const Container = styled.div`
   display: flex;
   padding: 20px 20px 0 20px;
+  min-height: 50vh;
   justify-content: space-between;
   ${mobile({
     flexDirection: 'column',
