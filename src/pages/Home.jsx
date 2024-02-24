@@ -1,5 +1,4 @@
 import {
-  Announcement,
   PageLayout,
   Slider,
   Categories,
@@ -10,7 +9,6 @@ import {
 const Home = () => {
   return (
     <>
-      <Announcement />
       <PageLayout>
         <Slider />
         <Categories />

@@ -1,15 +1,23 @@
 import styled from 'styled-components'
-import { Navbar } from './Navbar'
+import { tablet } from '@/responsive'
+import { useOffset } from '@/context/OffsetContext'
 
 const Content = styled.main`
-  padding-top: 60px;
+  ${p => {
+    //console.log('navbar-offset', p.$componentOffsets.pageLayout)
+  }}
+  padding-top: ${p => p.$componentOffsets.pageLayout}px;
+
+  ${tablet({
+    paddingTop: `${p => p.$elHeight.navbar - 10}px`,
+  })};
 `
 
 export const PageLayout = ({ children }) => {
+  const { componentOffsets } = useOffset()
   return (
     <>
-      <Navbar />
-      <Content>{children}</Content>
+      <Content $componentOffsets={componentOffsets}>{children}</Content>
     </>
   )
 }

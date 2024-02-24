@@ -3,17 +3,26 @@ import { Search } from '@material-ui/icons' //https://mui.com/material-ui/materi
 import { Badge } from '@material-ui/core'
 import { ShoppingCartOutlined } from '@material-ui/icons'
 import { tablet } from '@/responsive'
+import { shopInfo } from '@/data'
+import { useOffset } from '@/context/OffsetContext'
 
 /* 版型 */
 const Container = styled.div`
-  height: 60px;
+  ${p => {
+    // console.log('navbar高度', p.$elHeight.navbar)
+    // console.log('navbar高度(sm)', p.$elHeight.navbar - 10)
+    // console.log('navbar-offset', p.$componentOffsets.navbar)
+  }}
+  height: ${p => p.$elHeight.navbar}px; //60;
+  margin-top: ${p => p.$componentOffsets.navbar}px; //40;
+  ${tablet({
+    height: `${p => p.$elHeight.navbar - 10}px`, //50;
+  })};
   position: fixed;
   z-index: 99;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0px 5px 20px rgba(204, 204, 204, 0.1);
-  margin-top: 30px;
-  ${tablet({ height: '50px' })};
+  box-shadow: 0px 5px 30px rgba(204, 204, 204, 0.25);
 `
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -47,6 +56,8 @@ const Input = styled.input`
 /* 中:Logo */
 const Center = styled.div`
   flex: 1;
+  white-space: nowrap;
+  user-select: none;
 `
 const Logo = styled.h1`
   font-weight: bold;
@@ -69,8 +80,9 @@ const MenuItem = styled.div`
   ${tablet({ fontSize: '12px', marginLeft: '10px' })};
 `
 export const Navbar = () => {
+  const { elHeight, componentOffsets } = useOffset()
   return (
-    <Container>
+    <Container $elHeight={elHeight} $componentOffsets={componentOffsets}>
       <Wrapper>
         <Left>
           <Language>TW</Language>
@@ -80,7 +92,7 @@ export const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <Logo>{shopInfo.shopName}</Logo>
         </Center>
         <Right>
           <MenuItem>註冊</MenuItem>
