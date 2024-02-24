@@ -1,14 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'
+import { Announcement, Navbar, ScrollToTop } from '@/components'
+import { useOffset } from '@/context/OffsetContext'
 
 function App() {
+  const { announcementVisible } = useOffset()
   return (
     <>
-      <div>
-        APP
-        <Outlet />
-      </div>
+      {announcementVisible && <Announcement />}
+      <Navbar />
+      <Outlet />
+      <ScrollToTop />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

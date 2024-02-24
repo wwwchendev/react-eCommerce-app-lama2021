@@ -1,5 +1,23 @@
+import {
+  PageLayout,
+  Slider,
+  Categories,
+  Products,
+  Newsletter,
+  Footer,
+} from '@/components'
 const Home = () => {
-  return <div>Home</div>;
-};
+  return (
+    <>
+      <PageLayout>
+        <Slider />
+        <Categories />
+        <Products />
+        <Newsletter />
+      </PageLayout>
+      <Footer />
+    </>
+  )
+}
 
-export default Home;
+export default Home

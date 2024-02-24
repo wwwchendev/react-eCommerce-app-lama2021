@@ -4,6 +4,7 @@
 # Ignore the "dist" directory
 dist/
 build/
+public/
 
 # Ignore the "node_modules" directory
 node_modules/
