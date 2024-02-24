@@ -4,8 +4,8 @@ import {
   Categories,
   Products,
   Newsletter,
-  Footer,
 } from '@/components'
+
 const Home = () => {
   return (
     <>
@@ -15,7 +15,6 @@ const Home = () => {
         <Products />
         <Newsletter />
       </PageLayout>
-      <Footer />
     </>
   )
 }
