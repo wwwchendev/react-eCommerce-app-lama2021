@@ -85,12 +85,12 @@ const ContactItem = styled.div`
   }
 `
 const PaymentContainer = styled.div`
-display: flex;
+  display: flex;
   width: 50%;
 `
 const PaymentItem = styled.img`
-max-height: 40px;
-margin-right: 5px;
+  max-height: 40px;
+  margin-right: 5px;
 `
 
 export const Footer = () => {
@@ -108,10 +108,12 @@ export const Footer = () => {
           >
             <Facebook />
           </SocialIcon>
-          <SocialIcon color='E4405F'
+          <SocialIcon
+            color='E4405F'
             href='https://www.instagram.com/'
             target='_blank'
-            rel='noreferrer'>
+            rel='noreferrer'
+          >
             <Instagram />
           </SocialIcon>
           <SocialIcon
@@ -120,7 +122,7 @@ export const Footer = () => {
             target='_blank'
             rel='noreferrer'
           >
-            <img src='./images/icons/social-media/line.svg' alt="line-icon" />
+            <img src='./images/icons/social-media/line.svg' alt='line-icon' />
           </SocialIcon>
         </SocialContainer>
       </Left>
