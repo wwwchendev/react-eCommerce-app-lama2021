@@ -66,7 +66,7 @@ export const ScrollToTop = () => {
   return (
     <ToTopButton $showButton={showButton} onClick={handleScrollToTop}>
       <Icon
-        src='./images/icons/widget/double-arrow-up.svg'
+        src='/images/icons/widget/double-arrow-up.svg'
         alt='scroll-to-top'
       />
     </ToTopButton>
