@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import App from '@/App'
 import Home from '@/pages/Home'
+import ProductList from '@/pages/ProductList'
 import NotFound from '@/pages/NotFound'
 import { OffsetProvider } from '@/context/OffsetContext'
 
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/productList',
+        element: <ProductList />,
       },
       {
         path: '*',

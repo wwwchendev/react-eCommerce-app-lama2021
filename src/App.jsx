@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Announcement, Navbar, ScrollToTop } from '@/components'
+import { Announcement, Navbar, Footer, ScrollToTop } from '@/components'
 import { useOffset } from '@/context/OffsetContext'
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       {announcementVisible && <Announcement />}
       <Navbar />
       <Outlet />
+      <Footer />
       <ScrollToTop />
     </>
   )
