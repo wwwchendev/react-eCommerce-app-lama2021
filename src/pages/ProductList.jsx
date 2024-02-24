@@ -20,8 +20,8 @@ const FilterText = styled.span`
   ${mobile({ marginRight: '0px' })}
 `
 const SelectWrapper = styled.div`
-display: flex;
-gap: 5px;
+  display: flex;
+  gap: 5px;
 `
 const Select = styled.select`
   padding: 10px;

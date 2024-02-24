@@ -5,6 +5,7 @@ import {
 } from '@material-ui/icons'
 import styled from 'styled-components'
 import { tablet } from '../responsive'
+import { useNavigate } from 'react-router-dom'
 
 const Info = styled.div`
   opacity: 0;
@@ -70,13 +71,18 @@ const Icon = styled.div`
   }
 `
 export const Product = ({ item }) => {
+  const navigate = useNavigate()
   return (
     <Container>
       <Circle />
       <Image src={item.imgUrl} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
+          <ShoppingCartOutlined
+            onClick={() => {
+              navigate('/product/99')
+            }}
+          />
         </Icon>
         <Icon>
           <SearchOutlined />

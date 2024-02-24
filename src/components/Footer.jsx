@@ -122,7 +122,7 @@ export const Footer = () => {
             target='_blank'
             rel='noreferrer'
           >
-            <img src='./images/icons/social-media/line.svg' alt='line-icon' />
+            <img src='/images/icons/social-media/line.svg' alt='line-icon' />
           </SocialIcon>
         </SocialContainer>
       </Left>
@@ -173,10 +173,10 @@ export const Footer = () => {
           <a href={`mailto:${shopInfo.mail}`}>{shopInfo.mail}</a>
         </ContactItem>
         <PaymentContainer>
-          <PaymentItem src='./images/icons/payment/master.svg' />
-          <PaymentItem src='./images/icons/payment/visa.svg' />
-          <PaymentItem src='./images/icons/payment/jcb.svg' />
-          <PaymentItem src='./images/icons/payment/linepay.svg' />
+          <PaymentItem src='/images/icons/payment/master.svg' />
+          <PaymentItem src='/images/icons/payment/visa.svg' />
+          <PaymentItem src='/images/icons/payment/jcb.svg' />
+          <PaymentItem src='/images/icons/payment/linepay.svg' />
         </PaymentContainer>
       </Right>
     </Container>

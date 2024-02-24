@@ -5,6 +5,7 @@ import { ShoppingCartOutlined } from '@material-ui/icons'
 import { tablet } from '@/responsive'
 import { shopInfo } from '@/data'
 import { useOffset } from '@/context/OffsetContext'
+import { useNavigate } from 'react-router-dom'
 
 /* 版型 */
 const Container = styled.div`
@@ -63,6 +64,7 @@ const Logo = styled.h1`
   font-weight: bold;
   text-align: center;
   ${tablet({ fontSize: '24px' })};
+  cursor: pointer;
 `
 /* 右:註冊登入購物車 */
 const Right = styled.div`
@@ -81,6 +83,7 @@ const MenuItem = styled.div`
 `
 export const Navbar = () => {
   const { elHeight, componentOffsets } = useOffset()
+  const navigate = useNavigate()
   return (
     <Container $elHeight={elHeight} $componentOffsets={componentOffsets}>
       <Wrapper>
@@ -92,11 +95,29 @@ export const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>{shopInfo.shopName}</Logo>
+          <Logo
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            {shopInfo.shopName}
+          </Logo>
         </Center>
         <Right>
-          <MenuItem>註冊</MenuItem>
-          <MenuItem>登入</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/signup')
+            }}
+          >
+            註冊
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/login')
+            }}
+          >
+            登入
+          </MenuItem>
           <MenuItem>
             <Badge overlap='rectangular' badgeContent={4} color='secondary'>
               <ShoppingCartOutlined />
