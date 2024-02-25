@@ -118,7 +118,11 @@ export const Navbar = () => {
           >
             登入
           </MenuItem>
-          <MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate('/cart')
+            }}
+          >
             <Badge overlap='rectangular' badgeContent={4} color='secondary'>
               <ShoppingCartOutlined />
             </Badge>
