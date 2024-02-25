@@ -58,7 +58,7 @@ export const Announcement = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnnounceIndex(prevIndex =>
-        prevIndex === announceList.length - 1 ? 0 : prevIndex + 1,
+        prevIndex === 0 ? announceList.length - 1 : prevIndex - 1,
       )
     }, animationDuration)
     return () => clearInterval(interval)

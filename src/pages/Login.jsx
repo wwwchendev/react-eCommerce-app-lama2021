@@ -61,7 +61,7 @@ const FormGroup = styled.div`
   display: flex;
   align-items: center;
   font-size: 12px;
-  & >a{
+  & > a {
     margin-left: 5px;
   }
 `
