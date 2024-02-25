@@ -98,12 +98,12 @@ const PriceDetail = styled.div`
   align-items: center;
   justify-content: center;
   ${mobile({
-  width: '50%',
-  flexDirection: 'row',
-  marginLeft: 'auto',
-  marginBottom: '10px',
-  justifyContent: 'space-between',
-})}
+    width: '50%',
+    flexDirection: 'row',
+    marginLeft: 'auto',
+    marginBottom: '10px',
+    justifyContent: 'space-between',
+  })}
 `
 // 商品數量
 const ProductAmountContainer = styled.div`
@@ -112,9 +112,9 @@ const ProductAmountContainer = styled.div`
   justify-content: center;
   margin-bottom: 10px;
   ${mobile({
-  marginRight: '30px',
-  marginBottom: '0px',
-})}
+    marginRight: '30px',
+    marginBottom: '0px',
+  })}
 `
 const ProductAmount = styled.input.attrs({ type: 'number' })`
   font-size: 24px;

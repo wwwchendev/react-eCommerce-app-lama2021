@@ -15,8 +15,8 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   ${mobile({
-    height: '70vh',
-  })}
+  height: '80vh',
+})}
 `
 const Arrow = styled.div`
   width: 50px;
@@ -63,13 +63,13 @@ const ImgContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   ${mobile({
-    position: 'absolute',
-    bottom: '20%',
-    right: '0',
-  })}
+  position: 'absolute',
+  bottom: '20%',
+  right: '0',
+})}
   ${tablet({
-    bottom: '20%',
-  })}
+  bottom: '20%',
+})}
 `
 const Image = styled.img`
   max-height: 90%;
@@ -87,15 +87,15 @@ const InfoContainer = styled.div`
   flex: 1;
   padding: 50px;
   ${tablet({
-    position: 'absolute',
-    top: '0%',
-  })}
+  position: 'absolute',
+  top: '0%',
+})}
 `
 const Title = styled.h1`
   font-size: 4.5rem;
   ${mobile({
-    fontSize: '3rem',
-  })}
+  fontSize: '3rem',
+})}
 `
 const Desc = styled.p`
   margin: 50px 0;
@@ -104,8 +104,8 @@ const Desc = styled.p`
   letter-spacing: 3px;
   white-space: nowrap;
   ${tablet({
-    margin: '20px 0',
-  })}
+  margin: '20px 0',
+})}
 `
 
 const Button = styled.button`
@@ -128,9 +128,9 @@ const Button = styled.button`
     transform: scale(0.98);
   }
   ${tablet({
-    padding: '5px',
-    fontSize: '18px',
-  })}
+  padding: '5px',
+  fontSize: '18px',
+})}
 `
 
 export const Slider = () => {

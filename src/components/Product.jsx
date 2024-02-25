@@ -39,8 +39,8 @@ const Container = styled.div`
     opacity: 1;
   }
   ${tablet({
-    flex: 1,
-  })}
+  flex: 1,
+})}
 `
 const Circle = styled.div`
   width: 200px;

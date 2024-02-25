@@ -10,8 +10,10 @@ const Container = styled.div`
   min-height: 50vh;
   justify-content: space-between;
   ${mobile({
-    flexDirection: 'column',
-  })}
+  padding: '10px 10px 0 10px',
+  flexDirection: 'column',
+  minHeight: '100vh'
+})}
 `
 
 export const Categories = () => {

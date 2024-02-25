@@ -16,7 +16,7 @@ const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
-  ${mobile({ height: '40vh' })}
+  ${mobile({ height: '60vh' })}
 `
 // 產品名稱描述價格
 const InfoContainer = styled.div`
