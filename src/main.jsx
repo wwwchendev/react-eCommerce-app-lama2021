@@ -8,6 +8,7 @@ import { OffsetProvider } from '@/context/OffsetContext'
 import Product from './pages/Product'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Cart from './pages/Cart'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
       {
         path: '*',
