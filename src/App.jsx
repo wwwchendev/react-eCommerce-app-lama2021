@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
-
+import { Navbar, Footer, ScrollToTop } from '@/components'
 function App() {
   return (
     <>
-      <div>
-        APP
-        <Outlet />
-      </div>
+      <Navbar />
+      APP
+      <Outlet />
+      <Footer />
+      <ScrollToTop />
     </>
   );
 }
