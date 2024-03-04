@@ -4,7 +4,7 @@ import {
   ShoppingCartOutlined,
 } from '@material-ui/icons'
 import styled from 'styled-components'
-import { tablet } from '../responsive'
+import { mobile } from '../responsive'
 import { useNavigate } from 'react-router-dom'
 
 const Info = styled.div`
@@ -28,6 +28,7 @@ const Container = styled.div`
   margin: 5px;
   min-width: 280px;
   height: 350px;
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,8 +39,10 @@ const Container = styled.div`
   &:hover ${Info} {
     opacity: 1;
   }
-  ${tablet({
+
+  ${mobile({
     flex: 1,
+    height: '300px',
   })}
 `
 const Circle = styled.div`
@@ -70,27 +73,47 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `
+
+const FixedComponent = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 30px);
+  user-select: none;
+`
+
 export const Product = ({ item }) => {
   const navigate = useNavigate()
   return (
-    <Container>
-      <Circle />
-      <Image src={item.imgUrl} />
-      <Info>
-        <Icon>
-          <ShoppingCartOutlined
-            onClick={() => {
-              navigate('/product/99')
-            }}
-          />
-        </Icon>
-        <Icon>
-          <SearchOutlined />
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
-      </Info>
-    </Container>
+    <>
+      <Container>
+        <Circle />
+        <Image src={item.img} />
+        <Info>
+          <Icon>
+            <ShoppingCartOutlined onClick={() => {}} />
+          </Icon>
+          <Icon>
+            <SearchOutlined
+              onClick={() => {
+                navigate(`/product/${item._id}`)
+              }}
+            />
+          </Icon>
+          <Icon>
+            <FavoriteBorderOutlined />
+          </Icon>
+        </Info>
+        <FixedComponent>
+          <p>
+            {item.title} / {item.size}
+          </p>
+          <p>${item.price}</p>
+        </FixedComponent>
+      </Container>
+    </>
   )
 }
