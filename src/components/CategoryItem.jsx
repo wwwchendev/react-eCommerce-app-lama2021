@@ -71,7 +71,7 @@ export const CategoryItem = ({ item }) => {
         <Title>{item.title}</Title>
         <Button
           onClick={() => {
-            navigate('/productList')
+            navigate(`/productList/${item.title}`)
           }}
         >
           查看
