@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
 import { OffsetProvider } from '@/context/OffsetContext'
 
@@ -10,7 +10,10 @@ import Product from './pages/Product'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
+// import { useSelector } from 'react-redux';
 
+// const user = useSelector((state) => state.user.currentUser) || {};
+let user
 const router = createBrowserRouter(
   [
     {
@@ -22,7 +25,7 @@ const router = createBrowserRouter(
           element: <Home />,
         },
         {
-          path: '/productList',
+          path: '/productList/:category',
           element: <ProductList />,
         },
         {
@@ -30,20 +33,24 @@ const router = createBrowserRouter(
           element: <Product />,
         },
         {
-          path: '/register',
-          element: <Register />,
-        },
-        {
-          path: '/login',
-          element: <Login />,
-        },
-        {
           path: '/cart',
+          element: <Cart />,
+        },
+        {
+          path: '/success',
           element: <Cart />,
         },
         {
           path: '*',
           element: <NotFound />,
+        },
+        {
+          path: '/register',
+          element: user ? <Navigate to='/' /> : <Register />,
+        },
+        {
+          path: '/login',
+          element: user ? <Navigate to='/' /> : <Login />,
         },
       ],
     },
