@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-// import { popularProducts } from '@/data'
+// import { popularProducts } from '@/utils/data'
 import { Product } from './Product'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { mobile } from '../responsive'
+import { mobile } from '@/utils/responsive'
 
 const Container = styled.div`
   display: flex;
@@ -50,11 +50,12 @@ export const Products = ({ category, limit, getNew, filters, sort }) => {
       } catch (error) {
         console.log(error)
         setError(error)
+      } finally {
+        setIsPending(false)
       }
     }
     getProducts()
     setFilteredProducts(products)
-    setIsPending(false)
 
     // 返回清除函数
     return () => {

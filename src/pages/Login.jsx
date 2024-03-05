@@ -1,6 +1,6 @@
 import { PageLayout } from '@/components'
 import styled from 'styled-components'
-import { mobile } from '../responsive'
+import { mobile } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { categories } from '@/data'
+import { categories } from '@/utils/data'
 import { CategoryItem } from './CategoryItem'
-import { mobile } from '../responsive'
+import { mobile } from '@/utils/responsive'
 
 const Container = styled.div`
   display: flex;
@@ -18,23 +18,23 @@ const Container = styled.div`
 
 export const Categories = () => {
   const [categoryList, setCategoryList] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [isPending, setIsPending] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setCategoryList(categories)
-        setLoading(false)
       } catch (error) {
         setError(error)
-        setLoading(false)
+      } finally {
+        setIsPending(false)
       }
     }
     fetchData()
   }, [])
 
-  if (loading) {
+  if (isPending) {
     return <p>載入中</p>
   }
   if (error) {

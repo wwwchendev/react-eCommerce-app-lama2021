@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { Search } from '@material-ui/icons' //https://mui.com/material-ui/material-icons/
 import { Badge } from '@material-ui/core'
 import { ShoppingCartOutlined } from '@material-ui/icons'
-import { tablet } from '@/responsive'
-import { shopInfo } from '@/data'
+import { tablet } from '@/utils/responsive'
+import { shopInfo } from '@/utils/data'
 import { useOffset } from '@/context/OffsetContext'
 import { useNavigate } from 'react-router-dom'
 

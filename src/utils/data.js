@@ -40,15 +40,15 @@ export const sliderItems = [
 export const announceList = [
   {
     title: '滿額免運：購物滿1,500元，運費全免 / 限台澎金馬',
-    url: '#1',
+    url: '/productList',
   },
   {
     title: '當日中午12:00前下單，當日出貨',
-    url: '#2',
+    url: '/productList',
   },
   {
     title: '加入新會員，領取100元購物金，立即行動！',
-    url: '#3',
+    url: '/register',
   },
 ]
 export const categories = [

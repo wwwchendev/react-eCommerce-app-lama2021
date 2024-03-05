@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode, ssrBuild }) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   console.log({
     '當前運行環境': mode,

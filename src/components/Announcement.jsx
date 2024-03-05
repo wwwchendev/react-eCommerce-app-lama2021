@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { announceList } from '@/data'
+import { announceList } from '@/utils/data'
 import { CloseRounded } from '@material-ui/icons'
 import { useOffset } from '@/context/OffsetContext'
 

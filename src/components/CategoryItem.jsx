@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mobile, tablet } from '../responsive'
+import { mobile, tablet } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
@@ -71,7 +71,7 @@ export const CategoryItem = ({ item }) => {
         <Title>{item.title}</Title>
         <Button
           onClick={() => {
-            navigate(`/productList/${item.title}`)
+            navigate(`/productList?category=${item.title}`)
           }}
         >
           查看

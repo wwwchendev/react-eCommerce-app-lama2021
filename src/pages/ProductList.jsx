@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mobile } from '@/responsive'
+import { mobile } from '@/utils/responsive'
 import { PageLayout, Products, Newsletter } from '@/components'
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'

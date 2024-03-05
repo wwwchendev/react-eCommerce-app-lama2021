@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { tablet } from '@/responsive'
+import { tablet } from '@/utils/responsive'
 import { useOffset } from '@/context/OffsetContext'
 
 const Content = styled.main`

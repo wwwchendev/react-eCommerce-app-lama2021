@@ -4,7 +4,7 @@ import {
   ShoppingCartOutlined,
 } from '@material-ui/icons'
 import styled from 'styled-components'
-import { mobile } from '../responsive'
+import { mobile } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
 
 const Info = styled.div`
