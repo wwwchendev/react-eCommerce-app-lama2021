@@ -9,7 +9,8 @@ import Product from './pages/Product'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
-// import { useSelector } from 'react-redux';
+import store from '@/store/configureStore'
+import { Provider } from 'react-redux';
 
 // const user = useSelector((state) => state.user.currentUser) || {};
 let user
@@ -60,7 +61,9 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <OffsetProvider>
-    <RouterProvider router={router} />
-  </OffsetProvider>,
+  <Provider store={store}>
+    <OffsetProvider>
+      <RouterProvider router={router} />
+    </OffsetProvider>
+  </Provider >,
 )
