@@ -3,7 +3,7 @@ import { PageLayout } from '@/components'
 import { Add, Remove } from '@material-ui/icons'
 import styled from 'styled-components'
 
-import { mobile } from '../responsive'
+import { mobile } from '@/utils/responsive'
 
 // 版型布局
 const Wrapper = styled.div`

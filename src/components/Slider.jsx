@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import { useState, useEffect } from 'react'
-import { sliderItems } from '@/data'
-import { mobile, tablet } from '../responsive'
+import { sliderItems } from '@/utils/data'
+import { mobile, tablet } from '@/utils/responsive'
+import { useNavigate } from 'react-router-dom'
 
 const animationDuration = 10 * 1000
 
@@ -109,7 +110,7 @@ const Desc = styled.p`
 `
 
 const Button = styled.button`
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
@@ -120,8 +121,8 @@ const Button = styled.button`
   justify-content: center;
   transition: all 0.8s ease;
   &:hover {
-    padding: 10px 12px 10px 20px;
-    letter-spacing: 12px;
+    padding: 12px;
+    /* letter-spacing: 12px; */
     opacity: 0.6;
   }
   &:active {
@@ -135,19 +136,20 @@ const Button = styled.button`
 
 export const Slider = () => {
   const [slides, setSlides] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [isPending, setIsPending] = useState(true)
   const [error, setError] = useState(null)
-
   const [slideIndex, setSlideIndex] = useState(0)
+
+  const navigator = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setSlides(sliderItems)
-        setLoading(false)
       } catch (error) {
         setError(error)
-        setLoading(false)
+      } finally {
+        setIsPending(false)
       }
     }
     fetchData()
@@ -171,7 +173,7 @@ export const Slider = () => {
     }
   }
 
-  if (loading) {
+  if (isPending) {
     return <p>載入中</p>
   }
   if (error) {
@@ -192,7 +194,13 @@ export const Slider = () => {
               <InfoContainer>
                 <Title>{item.title}</Title>
                 <Desc>{item.desc}</Desc>
-                <Button>立即搶購</Button>
+                <Button
+                  onClick={() => {
+                    navigator('/productList')
+                  }}
+                >
+                  立即搶購
+                </Button>
               </InfoContainer>
             </Slide>
           )
