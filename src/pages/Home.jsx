@@ -12,7 +12,7 @@ const Home = () => {
       <PageLayout>
         <Slider />
         <Categories />
-        <Products limit={8} sort={'Newest'} filters={{}} />
+        <Products limit={8} sort={'Newest'} filters={{}} getNew={true} />
         <Newsletter />
       </PageLayout>
     </>

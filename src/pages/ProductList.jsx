@@ -1,42 +1,66 @@
 import styled from 'styled-components'
-import { mobile } from '@/utils/responsive'
+import { mobile, tablet } from '@/utils/responsive'
 import { PageLayout, Products, Newsletter } from '@/components'
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { ArrowRight } from '@material-ui/icons'
 import { useNavigate } from 'react-router-dom'
 
+const Side = styled.div`
+  /* border: 1px solid red; */
+`
+const Container = styled.div`
+  display: flex;
+  & > ${Side}:first-child {
+    flex: 1;
+    h2 {
+      ${tablet({ display: 'none' })}
+    }
+  }
+  & > ${Side}:last-child {
+    flex: 3.5;
+  }
+  ${tablet({ flexDirection: 'column' })}
+`
+
 const Title = styled.h1`
-  margin: 20px;
+  font-size: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
 `
 const FilterContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
   ${mobile({ flexDirection: 'column' })}
 `
 const Filter = styled.div`
-  margin: 0rem 0.5rem;
   display: flex;
-  gap: 20px;
-  ${mobile({ width: '0px 20px', display: 'flex', flexDirection: 'column' })}
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8px 0;
+  width: 100%;
+  ${mobile({ display: 'flex', flexDirection: 'column' })}
 `
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
-  margin-right: 20px;
+  line-height: 2;
   ${mobile({ marginRight: '0px' })}
 `
 const SelectWrapper = styled.div`
   display: flex;
   gap: 5px;
-  padding: 0 15px;
   white-space: nowrap;
-  ${mobile({ flexDirection: 'column' })}
+  ${mobile({
+  flexDirection: 'row',
+})}
 `
 const Select = styled.select`
   padding: 10px;
   width: 100%;
-  ${mobile({ margin: '10px 0px' })}
 `
 const Option = styled.option``
 
@@ -44,13 +68,55 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
+const Topbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+
+const Menu = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  list-style-type: none;
+  ${mobile({
+  flexDirection: 'row',
+  overflowX: 'scroll'
+})}
+`
+
+const MenuItem = styled.li`
+  width: 100%;
+  font-size: 18px;
+  white-space: nowrap;
+  z-index: 999;
+
+  &:nth-child(2) {
+    margin-top: 40px;
+    ${mobile({
+  marginTop: '0',
+})}
+  }
+  
+  /* Move the conditional styling to StyledLink */
+  ${StyledLink} {
+    display: block;
+    width: 100%;
+    color: #000;
+    font-weight: ${props =>
+    props.$category === props.$currentCategory ? '900' : '0'};
+  }
+`
+
 const ProductList = () => {
   const navigator = useNavigate()
   const [category, setCategory] = useState('')
-  const [filters, setFilters] = useState({})
   const [sortby, setSortby] = useState('Newest')
 
   //切換分類
+  // 這裡獲取search參數可以改用useSearchParams
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const qCategory = queryParams.get('category')
@@ -69,80 +135,68 @@ const ProductList = () => {
   }
 
   //篩選
-  const handleFilters = e => {
-    const { name, value } = e.target
-    setFilters({
-      ...filters,
-      [name]: value,
-    })
-  }
-
   const handleSortby = e => {
     const { value } = e.target
     setSortby(value)
   }
 
+
+
   return (
     <PageLayout>
-      <Title>
-        <StyledLink
-          to='/productList'
-          onClick={() => {
-            setCategory('')
-          }}
-        >
-          全部商品
-        </StyledLink>
-        {category !== '' && category !== null && (
-          <>
-            <ArrowRight /> {category}
-          </>
-        )}
-      </Title>
-      <FilterContainer>
-        <Filter>
-          <SelectWrapper>
-            <FilterText>商品分類</FilterText>
-            <Select
-              value={category ? category : ''}
-              name='Categories'
-              onChange={handleCategory}
-            >
-              <Option value=''>全部商品</Option>
-              <Option value='襯衫上衣'>襯衫上衣</Option>
-              <Option value='修身裙褲'>修身裙褲</Option>
-              <Option value='帽襪配件'>帽襪配件</Option>
-            </Select>
-          </SelectWrapper>
-        </Filter>
-        <Filter>
-          <SelectWrapper>
-            <FilterText>商品尺寸</FilterText>
-            <Select
-              value={filters.size ? filters.size : ''}
-              name='size'
-              onChange={handleFilters}
-            >
-              <Option value=''>全部尺寸</Option>
-              <Option value='S'>S</Option>
-              <Option value='M'>M</Option>
-              <Option value='L'>L</Option>
-              <Option value='F'>F</Option>
-            </Select>
-          </SelectWrapper>
-        </Filter>
-        <Filter>
-          <SelectWrapper>
-            <FilterText>排序:</FilterText>
-            <Select value={sortby} name='sortby' onChange={handleSortby}>
-              <Option value='Newest'>上架日期</Option>
-              <Option value='PriceAsc'>價格 (由低到高)</Option>
-              <Option value='PriceDesc'>價格 (由高到低)</Option>
-            </Select>
-          </SelectWrapper>
-        </Filter>
-      </FilterContainer>
-      <Products category={category} filters={filters} sort={sortby} />
+      <Topbar>
+        <Title>
+          <StyledLink
+            to='/productList'
+            onClick={() => {
+              setCategory('')
+            }}
+          >
+            商品列表
+          </StyledLink>
+          <ArrowRight /> {category ? category : '全部商品'}
+        </Title>
+      </Topbar>
+      <Container>
+        <Side>
+          <Menu>
+            <h2>分類</h2>
+            <MenuItem $currentCategory={category} $category={null}>
+              <StyledLink to='/productList'>全部商品 (999)</StyledLink>
+            </MenuItem>
+            <MenuItem $currentCategory={category} $category={'襯衫上衣'}>
+              <StyledLink to='/productList?category=襯衫上衣'>
+                襯衫上衣 (?)
+              </StyledLink>
+            </MenuItem>
+            <MenuItem $currentCategory={category} $category={'修身裙褲'}>
+              <StyledLink to='/productList?category=修身裙褲'>
+                修身裙褲 (?)
+              </StyledLink>
+            </MenuItem>
+            <MenuItem $currentCategory={category} $category={'鞋包配件'}>
+              <StyledLink to='/productList?category=鞋包配件'>
+                鞋包配件 (?)
+              </StyledLink>
+            </MenuItem>
+          </Menu>
+        </Side>
+        <Side>
+          <FilterContainer>
+            <Filter>
+              <SelectWrapper>
+                <FilterText>排序</FilterText>
+                <Select value={sortby} name='sortby' onChange={handleSortby}>
+                  <Option value='Newest'>上架日期</Option>
+                  <Option value='PriceAsc'>價格 (由低到高)</Option>
+                  <Option value='PriceDesc'>價格 (由高到低)</Option>
+                </Select>
+              </SelectWrapper>
+            </Filter>
+          </FilterContainer>
+          <Products sort={sortby} />
+        </Side>
+      </Container>
       <Newsletter />
     </PageLayout>
   )

@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { mobile } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
 
-const Info = styled.div`
+const Actions = styled.div`
   opacity: 0;
   width: 100%;
   height: 100%;
@@ -24,37 +24,42 @@ const Info = styled.div`
 `
 
 const Container = styled.div`
-  flex: 0 0 calc(25% - 10px);
-  margin: 5px;
-  min-width: 280px;
-  height: 350px;
+  flex: 0 0 calc(24.5% - 7.5px);
+  width: 100%;
+  max-height: 100%;
   /* border: 1px solid red; */
+  overflow: hidden;
+  //後代選擇器
+  &:hover ${Actions} {
+    opacity: 1;
+  }
+  ${mobile({
+    flex: '0 0 calc(100%)',
+  })}
+`
+
+const Circle = styled.div`
+  border-radius: 50%;
+`
+const Bg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f5fbfd;
   position: relative;
+  padding: 20px;
 
-  //後代選擇器
-  &:hover ${Info} {
-    opacity: 1;
+  /* 在 Bg 內指定 Circle 元件的樣式 */
+  & > ${Circle} {
+    width: 180px;
+    height: 180px;
+    background-color: white;
+    position: absolute;
   }
-
-  ${mobile({
-    flex: 1,
-    height: '300px',
-  })}
-`
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
 `
 
 const Image = styled.img`
-  height: 75%;
+  height: 180px;
   z-index: 2;
 `
 
@@ -73,26 +78,31 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `
-
-const FixedComponent = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  z-index: 50;
+const Wrap = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: calc(100% - 30px);
-  user-select: none;
+  /* border: 1px solid red; */
+`
+const Info = styled.div`
+  background-color: #deedf3;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 16px;
+  height: 100%;
+
+  & > ${Wrap}:first-child {
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
 `
 
 export const Product = ({ item }) => {
   const navigate = useNavigate()
   return (
-    <>
-      <Container>
+    <Container>
+      <Bg>
         <Circle />
         <Image src={item.img} />
-        <Info>
+        <Actions>
           <Icon>
             <ShoppingCartOutlined onClick={() => {}} />
           </Icon>
@@ -106,14 +116,28 @@ export const Product = ({ item }) => {
           <Icon>
             <FavoriteBorderOutlined />
           </Icon>
-        </Info>
-        <FixedComponent>
+        </Actions>
+      </Bg>
+
+      <Info>
+        <Wrap>
+          <p>{item.title}</p>
           <p>
-            {item.title} / {item.size}
+            {(() => {
+              const minPrice = Math.min(
+                ...item.specification.map(spec => spec.price),
+              )
+              const maxPrice = Math.max(
+                ...item.specification.map(spec => spec.price),
+              )
+              // console.log(item.title, minPrice, maxPrice);
+              return minPrice === maxPrice
+                ? `$ ${minPrice} `
+                : `$ ${minPrice} - ${maxPrice}`
+            })()}
           </p>
-          <p>${item.price}</p>
-        </FixedComponent>
-      </Container>
-    </>
+        </Wrap>
+      </Info>
+    </Container>
   )
 }

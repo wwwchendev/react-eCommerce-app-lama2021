@@ -65,7 +65,7 @@ export const categories = [
   {
     id: 3,
     imgUrl: '/images/categories/category03.png',
-    title: '帽襪配件',
+    title: '鞋包配件',
   },
   // {
   //   id: 4,
