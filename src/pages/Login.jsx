@@ -2,6 +2,10 @@ import { PageLayout } from '@/components'
 import styled from 'styled-components'
 import { mobile } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginRequest, clearError } from '@/store/user'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -48,6 +52,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin: 10px auto;
+  &:disabled {
+    background-color: #aaaaaa;
+    cursor: not-allowed;
+  }
 `
 
 const Link = styled.a`
@@ -65,18 +73,57 @@ const FormGroup = styled.div`
     margin-left: 5px;
   }
 `
-
-const Login = () => {
+const Error = styled.span`
+  color: red;
+`
+export const Login = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [formInput, setformInput] = useState({
+    username: '',
+    password: '',
+  })
+  const userState = useSelector(state => state.user)
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setformInput(prevState => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleLogin = e => {
+    e.preventDefault()
+    dispatch(loginRequest(formInput))
+    if (userState.error !== null) {
+      dispatch(clearError())
+    }
+  }
+
   return (
     <PageLayout>
       <Container>
         <Wrapper>
           <Title>登 入</Title>
-          <Form>
-            <Input placeholder='email' />
-            <Input placeholder='密碼' />
-            <Button>LOGIN</Button>
+          <Form onSubmit={handleLogin}>
+            <Input
+              name='username'
+              defaultValue={formInput.username}
+              onChange={handleChange}
+              placeholder='輸入用戶名稱'
+            />
+            <Input
+              name='password'
+              defaultValue={formInput.password}
+              onChange={handleChange}
+              placeholder='請輸入密碼'
+            />
+            <Button type='submit' disabled={userState.loading}>
+              LOGIN
+            </Button>
+
+            {userState.error !== null && <Error>{userState.error.error}</Error>}
             <Link>忘記密碼</Link>
             <FormGroup>
               <span>還不是會員嗎?</span>
@@ -94,5 +141,3 @@ const Login = () => {
     </PageLayout>
   )
 }
-
-export default Login

@@ -6,6 +6,9 @@ import { tablet } from '@/utils/responsive'
 import { shopInfo } from '@/utils/data'
 import { useOffset } from '@/context/OffsetContext'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { logoutRequest, clearError } from '@/store/user'
+import { useDispatch } from 'react-redux'
 
 /* 版型 */
 const Container = styled.div`
@@ -84,6 +87,19 @@ const MenuItem = styled.div`
 export const Navbar = () => {
   const { elHeight, componentOffsets } = useOffset()
   const navigate = useNavigate()
+  const { quantity } = useSelector(state => state.cart)
+  const { currentUser, loading } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const userState = useSelector(state => state.user)
+
+  const handleLogout = e => {
+    e.preventDefault()
+    dispatch(logoutRequest())
+    if (userState.error !== null) {
+      dispatch(clearError())
+    }
+  }
+
   return (
     <Container $elHeight={elHeight} $componentOffsets={componentOffsets}>
       <Wrapper>
@@ -104,29 +120,43 @@ export const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <MenuItem
-            onClick={() => {
-              navigate('/register')
-            }}
-          >
-            註冊
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              navigate('/login')
-            }}
-          >
-            登入
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              navigate('/cart')
-            }}
-          >
-            <Badge overlap='rectangular' badgeContent={4} color='secondary'>
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
+          {currentUser?.result ? (
+            <>
+              您好{', '}
+              {currentUser.result.username}
+              <MenuItem
+                onClick={() => {
+                  navigate('/cart')
+                }}
+              >
+                <Badge
+                  overlap='rectangular'
+                  badgeContent={quantity}
+                  color='secondary'
+                >
+                  <ShoppingCartOutlined />
+                </Badge>
+              </MenuItem>
+              <MenuItem onClick={e => handleLogout(e)}>登出</MenuItem>
+            </>
+          ) : (
+            <>
+              <MenuItem
+                onClick={() => {
+                  navigate('/register')
+                }}
+              >
+                註冊
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate('/login')
+                }}
+              >
+                登入
+              </MenuItem>
+            </>
+          )}
         </Right>
       </Wrapper>
     </Container>
