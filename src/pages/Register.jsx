@@ -1,6 +1,6 @@
 import { PageLayout } from '@/components'
 import styled from 'styled-components'
-import { mobile } from '@/responsive'
+import { mobile } from '@/utils/responsive'
 
 const Container = styled.div`
   min-height: 100vh;

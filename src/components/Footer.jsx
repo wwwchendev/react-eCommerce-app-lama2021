@@ -6,8 +6,8 @@ import {
   Room,
 } from '@material-ui/icons'
 import styled from 'styled-components'
-import { mobile } from '../responsive'
-import { shopInfo } from '@/data'
+import { mobile } from '@/utils/responsive'
+import { shopInfo } from '@/utils/data'
 
 const Container = styled.div`
   display: flex;

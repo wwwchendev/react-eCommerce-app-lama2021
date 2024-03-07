@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mobile, tablet } from '../responsive'
+import { mobile, tablet } from '@/utils/responsive'
 import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
@@ -9,8 +9,8 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   ${tablet({
-    maxHeight: '50vh',
-  })}
+  maxHeight: '50vh',
+})}
 `
 const Image = styled.img`
   position: absolute;
@@ -38,15 +38,15 @@ const Info = styled.div`
   align-items: center;
   justify-content: center;
   ${mobile({
-    flexDirection: 'row',
-  })}
+  flexDirection: 'row',
+})}
 `
 const Title = styled.h1`
   color: #fff;
   margin-bottom: 20px;
   ${mobile({
-    margin: '0 10px 0 0',
-  })}
+  margin: '0 10px 0 0',
+})}
 `
 const Button = styled.button`
   border: none;
@@ -71,7 +71,7 @@ export const CategoryItem = ({ item }) => {
         <Title>{item.title}</Title>
         <Button
           onClick={() => {
-            navigate('/productList')
+            navigate(`/productList?category=${item.title}`)
           }}
         >
           查看
