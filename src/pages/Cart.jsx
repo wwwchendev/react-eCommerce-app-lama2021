@@ -4,6 +4,10 @@ import { Add, Remove } from '@material-ui/icons'
 import styled from 'styled-components'
 
 import { mobile } from '@/utils/responsive'
+import { numberWithCommas } from '@/utils/format'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // 版型布局
 const Wrapper = styled.div`
@@ -73,6 +77,7 @@ const ProductDetail = styled.div`
 `
 const Image = styled.img`
   width: 200px;
+  cursor: pointer;
 `
 const Details = styled.div`
   padding: 20px;
@@ -152,8 +157,11 @@ const SummaryItemCouponWrapper = styled.span`
 `
 const SummaryItemInput = styled.input``
 const SummaryItemPrice = styled.span``
+const Img = styled.img``
 
-const Cart = () => {
+export const Cart = () => {
+  const cart = useSelector(state => state.cart)
+  // console.log(cart)
   return (
     <PageLayout>
       <Wrapper>
@@ -161,80 +169,79 @@ const Cart = () => {
         <Top>
           <TopButton>繼續購物</TopButton>
           <TopTexts>
-            <TopText>購物車內的商品(2)</TopText>
+            <TopText>購物車內的商品({cart.quantity})</TopText>
             <TopText>願望清單(0)</TopText>
           </TopTexts>
           <TopButton type='filled'>立即結帳</TopButton>
         </Top>
         <Bottom>
-          <Info>
-            <Product>
-              <ProductDetail>
-                <Image src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A' />
-                <Details>
-                  <ProductName>彈力透氣慢跑鞋</ProductName>
-                  <ProductId>
-                    <span>
-                      <b>商品編號 </b>93813718293
-                    </span>
-                  </ProductId>
-                  <ProductColor $color='black' />
-                  <ProductSize>
-                    <b>規格</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Remove />
-                  <ProductAmount defaultValue={1} />
-                  <Add />
-                </ProductAmountContainer>
+          {cart.products.length === 0 ? (
+            <Info>
+              <Img src={'/images/empty/cartEmpty.png'} />
+              <p>購物車尚無商品</p>
+            </Info>
+          ) : (
+            <Info>
+              {cart.products.map((p, idx) => {
+                return (
+                  <Product key={idx}>
+                    <ProductDetail>
+                      <Link to={`/product/${p._id}`}>
+                        <Image src={p.img} />
+                      </Link>
+                      <Details>
+                        <ProductName>
+                          <b>{p.title}</b>
+                        </ProductName>
+                        <ProductId>
+                          <span>
+                            <b>商品編號 </b>
+                            {p._id}
+                          </span>
+                        </ProductId>
+                        <ProductSize>
+                          <b>款式</b> {p.selectedOption.style}
+                          {' | '}
+                          <b>尺寸</b> {p.selectedOption.size}
+                        </ProductSize>
+                        <ProductSize>
+                          {' '}
+                          $ {numberWithCommas(p.price)}
+                        </ProductSize>
+                      </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                      <ProductAmountContainer>
+                        <Remove />
+                        <ProductAmount defaultValue={p.quantity} />
+                        <Add />
+                      </ProductAmountContainer>
 
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src='https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png' />
-                <Details>
-                  <ProductName>HAKURA休閒短袖上衣</ProductName>
-                  <ProductId>
-                    <span>
-                      <b>商品編號 </b>93813718293
-                    </span>
-                  </ProductId>
-                  <ProductColor $color='gray' />
-                  <ProductSize>
-                    <b>規格</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Remove />
-                  <ProductAmount defaultValue={1} />
-                  <Add />
-                </ProductAmountContainer>
-
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
-          </Info>
+                      <ProductPrice>
+                        $ {numberWithCommas(p.price * p.quantity)}{' '}
+                      </ProductPrice>
+                    </PriceDetail>
+                    <Hr />
+                  </Product>
+                )
+              })}
+            </Info>
+          )}
           <Summary>
             <SummaryTitle>訂單摘要</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>商品合計</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>
+                $ {numberWithCommas(cart.total)}
+              </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>運費</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>$ {numberWithCommas(49)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>運費折抵</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>$ {numberWithCommas(49)}</SummaryItemPrice>
             </SummaryItem>
             <Hr />
             <SummaryItem>
@@ -250,7 +257,9 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem $type='total'>
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>
+                $ {numberWithCommas(cart.total)}
+              </SummaryItemPrice>
             </SummaryItem>
             <Button>立即結帳</Button>
           </Summary>
@@ -259,4 +268,3 @@ const Cart = () => {
     </PageLayout>
   )
 }
-export default Cart
