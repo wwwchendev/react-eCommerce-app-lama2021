@@ -25,3 +25,6 @@ dist-ssr
 .env
 .env.production
 .env.development
+.env.production
+*.ai
+*.xlsx

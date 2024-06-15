@@ -19,9 +19,8 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    // sourcemap: 開發環境預設啟用生產版本不啟用，如果需要啟用設置如下。
-    // build: {
-    //   sourcemap: true, 
-    // },
+    build: {
+      sourcemap: true, // 啟用 source map
+    },
   }
 });
