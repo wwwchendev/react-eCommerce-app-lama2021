@@ -9,13 +9,10 @@ import customAxios from '@/utils/axios/customAxios'
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem 2rem;
-  ${md({
-  gap: ' 1.5rem',
-})}
+  gap: 1rem;
+
   ${xs({
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '1rem',
 })}
 `
 

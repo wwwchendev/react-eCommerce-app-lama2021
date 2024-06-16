@@ -8,7 +8,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  height: 100%;
 `
 const ImageContainer = styled(Link)`
   position: relative;
