@@ -113,6 +113,8 @@ const FormRadioWrapper = styled.div`
   border-radius: 5px;
 `
 const FormRadio = styled.div`
+  display: flex;
+  align-items: center;
   label {
     cursor: pointer;
     font-size: 15px;
