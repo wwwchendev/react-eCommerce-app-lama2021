@@ -18,7 +18,7 @@ const Container = styled.div`
 const FeaturedWrapper = styled.div`
   height: 450px;
   overflow: hidden;
-  ${sm({ height: '450px' })}
+  ${sm({ height: '300px' })}
 `
 
 const FeaturedImageWrapper = styled.div`

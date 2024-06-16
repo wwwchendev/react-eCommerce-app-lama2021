@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 //components
 import styled from 'styled-components'
+import { xs, sm, md } from '@/components/layout/responsive'
 
 const Container = styled.div`
   display: flex;
@@ -26,6 +27,9 @@ const ImageContainer = styled(Link)`
   &:hover {
     img {
       scale: 1.1;
+      ${xs({
+  scale: 1
+})}
     }
   }
 `

@@ -95,6 +95,10 @@ const ProductDescription = styled(Link)`
 const ProductPrice = styled.p`
   color: #d31414;
   font-size: ${props => (props.$viewMode === 'grid' ? '18px' : '1.4rem')};
+  white-space: nowrap;
+  ${sm({
+  fontSize: props => (props.$viewMode === 'grid' ? '1rem' : '1rem'),
+})}
 `
 const ButtonContainer = styled.div`
   display: flex;
@@ -104,6 +108,7 @@ const Select = styled.select`
   border: 1px solid #ddd;
   padding: 0.25rem 0;
   border-radius: 5px;
+  color:#333;
   font-size: ${props => (props.$viewMode === 'grid' ? '0.9rem' : '1rem')};
 `
 const ProductNumber = styled.span`

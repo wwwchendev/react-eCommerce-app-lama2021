@@ -108,19 +108,24 @@ const Col = styled.div`
 const FormRadioWrapper = styled.div`
   flex: 1;
   display: flex;
+  gap: 3rem;
   padding: 8px;
   border: ${p => (p.$border ? '2px solid #ce4646' : '')};
   border-radius: 5px;
+  ${xs({ gap: '1rem' })};
 `
 const FormRadio = styled.div`
 div{
   display: flex;
   align-items: center;
+  position: relative;
 }
   
   label {
+    position: absolute;
     cursor: pointer;
     font-size: 15px;
+    left: 1rem;
   }
 `
 const Agreement = styled.div`

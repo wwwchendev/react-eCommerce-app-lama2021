@@ -13,12 +13,13 @@ const Container = styled.button`
   align-items: center;
   width: ${p => (p.$size ? p.$size : '1.5rem')};
   height: ${p => (p.$size ? p.$size : '1.5rem')};
+  color: #333;
   &:active {
     transform: scale(0.98);
   }
   ${md({
-    width: p => (p.$size ? p.$size : '1.5rem'),
-  })};
+  width: p => (p.$size ? p.$size : '1.5rem'),
+})};
   svg {
     max-height: 100%;
     color: ${p => (p.$strokeColor ? p.$strokeColor : '')};
