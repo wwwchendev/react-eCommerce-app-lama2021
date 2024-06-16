@@ -9,7 +9,7 @@ export const shopInfo = {
 
 export const announceList = [
   {
-    title: '滿額免運：購物滿2,000元，運費全免 / 限台澎金馬',
+    title: '滿額免運：購物滿2,000元，免運 / 限台澎金馬',
     url: '/news/RE-START SHOP 本月運費政策',
   },
   {

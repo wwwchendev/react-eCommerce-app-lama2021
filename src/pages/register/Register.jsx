@@ -109,7 +109,6 @@ const FormRadioWrapper = styled.div`
   flex: 1;
   display: flex;
   padding: 8px;
-  width: 100%;
   border: ${p => (p.$border ? '2px solid #ce4646' : '')};
   border-radius: 5px;
 `
@@ -117,10 +116,8 @@ const FormRadio = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.2rem;
 
-  ${Input} {
-    margin-right: 8px;
-  }
   label {
     cursor: pointer;
     font-size: 15px;
@@ -144,6 +141,7 @@ const PromptMessage = styled.div`
   position: absolute;
   bottom: -1.1rem;
   left: 0;
+  white-space: nowrap;
 `
 
 const FormFooter = styled.div`
