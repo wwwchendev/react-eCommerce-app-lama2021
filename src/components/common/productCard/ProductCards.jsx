@@ -1,30 +1,32 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { md, xs } from '@/components/layout/responsive'
+import { md, sm, xs } from '@/components/layout/responsive'
 import { ProductCard } from '@/components/common'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartRequests, clearCartError } from '@/store/cart'
 import { likedProductRequests } from '@/store/likedProduct'
 import { Alert, Confirm } from '@/components/common'
-import { Grid } from '@material-ui/core'
 
 const ProductsWrapper = styled.div`
   display: grid;
   grid-template-columns: ${props =>
     props.$viewMode === 'grid' ? 'repeat(4, 1fr)' : '1fr'};
-  gap: 1.5rem;
+  box-sizing: border-box;
+  gap: 1rem; // 这里设置 gap
 
   ${md({
       gridTemplateColumns: props =>
         props.$viewMode === 'grid' ? 'repeat(3, 1fr)' : '1fr',
+      gap: '1rem' // 确保在不同屏幕大小下使用相同的 gap
     })}
-  ${xs({
+
+  ${sm({
       gridTemplateColumns: props =>
         props.$viewMode === 'grid' ? 'repeat(2, 1fr)' : '1fr',
-      gap: '1rem',
+      gap: '0.5rem' // 可以根据需要调整 gap
     })}
-`
+`;
 
 export const ProductCards = ({ $viewMode, products }) => {
   const dispatch = useDispatch()
