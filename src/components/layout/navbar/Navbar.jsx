@@ -6,41 +6,40 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useConfigs } from '@/context/ConfigsContext'
 import { shopInfo } from '@/utils/data'
 import { AuthUserRequests } from '@/store/authUser'
-import { cartRequests, clearCartError } from '@/store/cart';
+import { cartRequests, clearCartError } from '@/store/cart'
 //components
 import styled from 'styled-components'
 import Icon from '@/components/icon'
 const { Heart, Cart1, People, ArrowDown } = Icon
-import { xs, sm, md, lg, xl } from '@/components/layout/responsive';
+import { xs, sm, md, lg, xl } from '@/components/layout/responsive'
 import { Button, IconButton } from '@/components/common'
-import Announcement from './Announcement';
-import { Container } from '@material-ui/core';
+import Announcement from './Announcement'
+import { Container } from '@material-ui/core'
 import customAxios from '@/utils/axios/customAxios'
 import { CloseRounded } from '@material-ui/icons'
 import store from '@/store/configureStore'
 
 const HeaderWrapper = styled.div`
-/* 行動版選單打開後背景會覆蓋淡黑色背景 */
+  /* 行動版選單打開後背景會覆蓋淡黑色背景 */
   position: fixed;
   z-index: 700;
   top: 0;
   left: 0;
   width: 0%;
   height: 0%;
-  background-color:none;
+  background-color: none;
   ${sm({
-  width: p => p.$open ? "100%" : "0%",
-  height: p => p.$open ? "100%" : "0%",
-  backgroundColor: p => p.$open ? "rgba(0, 0, 0, 0.8)" : ""
+  width: p => (p.$open ? '100%' : '0%'),
+  height: p => (p.$open ? '100%' : '0%'),
+  backgroundColor: p => (p.$open ? 'rgba(0, 0, 0, 0.8)' : ''),
 })};
-
 `
 const HeaderBg = styled.div`
   box-shadow: 0px 5px 16px rgba(204, 204, 204, 0.25);
   position: fixed;
   background-color: #fff;
   width: 100%;
-  display: block;  
+  display: block;
   * {
     margin: 0;
     box-sizing: border-box;
@@ -90,21 +89,21 @@ const HeaderItem = styled.div`
       } else if (p.$position === 'right') {
         return 1
       }
-    }
+    },
   })};
 
-
-
-&:nth-child(3){
-  ${sm({
-    display: 'none'
+  &:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
+    ${sm({
+    display: 'none',
   })}
-}
+  }
 `
 
 // MobileMenuTrigger
 const MobileMenuTrigger = styled.div`
-  display:none;  
+  display: none;
   z-index: 100;
 
   ${sm({
@@ -124,9 +123,9 @@ const MobileMenuLine = styled.span`
   position: absolute;
   width: 24px;
   height: 4px;
-  background-color:  #c9a388;
+  background-color: #c9a388;
   cursor: pointer;
-border-radius: 8px;
+  border-radius: 8px;
   &::before,
   &::after {
     content: '';
@@ -135,7 +134,7 @@ border-radius: 8px;
     width: 100%;
     height: 100%;
     background-color: #c9a388;
-border-radius: 8px;
+    border-radius: 8px;
   }
   &::before {
     top: -8px;
@@ -145,7 +144,7 @@ border-radius: 8px;
   }
 `
 const MobileMenuHeader = styled.div`
- ${sm({
+  ${sm({
   display: 'flex',
   height: '50px',
   padding: '0 0rem',
@@ -172,17 +171,34 @@ const CloseBtn = styled.button`
 })}
 `
 const MobileMenuWrapper = styled.div`
-display: none;
-flex-direction: column;
-width: 100%;
-justify-content: space-between;
-padding:0.75rem 1rem;
-border-bottom: 1px solid rgba(0,0,0,0.1);
-${sm({
-  display: 'flex'
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  ${sm({
+  display: 'flex',
 })}
 `
-
+const SignupAndLogin = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  button {
+    border: 1px solid #aa8a74;
+    color: #aa8a74;
+    background-color: transparent;
+    padding: 0.25rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid #aa8a74;
+      color: #fff;
+      background-color: #aa8a74;
+    }
+  }
+`
 //🔺HeaderItem(左)-LOGO
 const Logo = styled.h1`
   a {
@@ -202,11 +218,11 @@ const Logo = styled.h1`
 `
 //🔺HeaderItem(中)-Menu
 const MenuWrapper = styled.nav`
-display:block;
-z-index:100;
-${sm({
+  display: block;
+  z-index: 100;
+  ${sm({
   overflowY: 'scroll',
-  display: p => p.$open ? "block" : "none",
+  display: p => (p.$open ? 'block' : 'none'),
   position: 'fixed',
   width: '80%',
   backgroundColor: '#fff',
@@ -215,7 +231,7 @@ ${sm({
   top: '0',
   height: '100%',
   marginTop: p => `${p.$offset}rem`,
-  padding: '0 0 3rem 0'
+  padding: '0 0 3rem 0',
 })};
 `
 //第一層級選單
@@ -225,16 +241,16 @@ const MainMenuItem = styled.li`
   margin-left: 24px;
   a {
     font-size: 15px;
-    color:${p => p.$$open ? "#aa5d5d" : "#000"};
-    position: relative;    
+    color: ${p => (p.$$open ? '#aa5d5d' : '#000')};
+    position: relative;
     ${sm({
-  fontSize: '16px'
+  fontSize: '16px',
 })}
   }
-  &:hover { 
+  &:hover {
     cursor: pointer;
-}
-${sm({
+  }
+  ${sm({
   display: 'flex',
   flexDirection: p => (p.$flexDirection ? p.$flexDirection : 'column'),
   lineHeight: '3',
@@ -243,16 +259,16 @@ ${sm({
   borderBottom: '1px solid rgba(0,0,0,0.1)',
   width: '100%',
 })}
-
 `
 const MainMenuItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
   ${sm({
   height: '100%',
-  justifyContent: p => p.$justifyContent ? p.$justifyContent : 'space-between'
+  justifyContent: p =>
+    p.$justifyContent ? p.$justifyContent : 'space-between',
 })}
 `
 const MainMenuItemTitle = styled(Link)``
@@ -263,7 +279,7 @@ const SubMenu = styled.div`
   z-index: 500;
   background-color: #ffffff;
   box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
-  padding: 1rem ;
+  padding: 1rem;
   transition: all 0.5s ease;
   margin-top: ${p => (p.$display ? '16px' : '25px')};
   opacity: ${p => (p.$display ? '1' : '0')};
@@ -276,15 +292,14 @@ const SubMenu = styled.div`
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
-    border-right: 15px solid transparent;    
+    border-right: 15px solid transparent;
     border-bottom: 20px solid #fff;
     top: -10px;
     right: 50%;
     ${sm({
-  display: 'none'
+  display: 'none',
 })}
   }
-
 
   ${sm({
   position: 'relative',
@@ -302,7 +317,6 @@ const SubMenu = styled.div`
   display: p => (p.$display ? 'flex' : 'none'),
   flexWrap: 'wrap',
 })}
-
 `
 const SubMenuLg = styled(SubMenu)`
   margin-top: ${p => (p.$display ? '16px' : '25px')};
@@ -323,11 +337,11 @@ const SubMenuLg = styled(SubMenu)`
   display: p => (p.$display ? 'flex' : 'none'),
   flexDirection: p => (p.$flexDirection ? p.$flexDirection : 'column'),
   flexWrap: 'wrap',
-  padding: p => p.$padding ? p.$padding : '0rem 0rem 1rem 2rem',
+  padding: p => (p.$padding ? p.$padding : '0rem 0rem 1rem 2rem'),
 })}
 `
 const SubMenuLgItem = styled.div`
-  flex:1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -339,40 +353,38 @@ const SubMenuLgItem = styled.div`
     object-fit: cover;
     max-width: 100%;
   }
-  br{
-  ${sm({
-  display: 'none'
+  br {
+    ${sm({
+  display: 'none',
 })}
   }
 
-${sm({
+  ${sm({
   width: '100%',
   flexWrap: 'wrap',
   textAlign: 'left',
-  flexDirection: 'column'
+  flexDirection: 'column',
 })}
 `
 const SubMenuTitleWrapper = styled.div`
-display: flex;
-align-items: center;
-gap:8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-h4{
-  line-height: 2;
-  font-weight:bold;
-  ${sm({
-  fontWeight: 'normal'
+  h4 {
+    line-height: 2;
+    font-weight: bold;
+    ${sm({
+  fontWeight: 'normal',
 })}
-}
+  }
 
-
-button {
-  display: none;
-  ${sm({
+  button {
+    display: none;
+    ${sm({
   display: 'flex',
 })}
-}
-
+  }
 `
 // 最新消息
 const NewsWrapper = styled(SubMenu)`
@@ -385,7 +397,7 @@ const NewsWrapper = styled(SubMenu)`
   flex-wrap: wrap;
   padding: 1rem 2rem;
   align-items: flex-start;
-  gap:8px;
+  gap: 8px;
   &::after {
     display: none;
   }
@@ -394,8 +406,6 @@ const NewsWrapper = styled(SubMenu)`
   padding: 0,
   display: p => (p.$display ? 'flex' : 'none'),
 })}
-
-
 `
 const NewsImageWrapper = styled(Link)`
   flex: 1;
@@ -414,8 +424,8 @@ const NewsImageWrapper = styled(Link)`
 //商品列表
 const ThirdMenu = styled.ul`
   text-indent: 1rem;
-      font-size: 15px;
-      color: #555555;
+  font-size: 15px;
+  color: #555555;
   ${sm({
   position: 'relative',
   width: '100%',
@@ -428,13 +438,11 @@ const ThirdMenu = styled.ul`
   display: p => (p.$display ? 'flex' : 'none'),
   flexDirection: p => (p.$flexDirection ? p.$flexDirection : 'column'),
   flexWrap: 'wrap',
-  textIndent: '2rem'
+  textIndent: '2rem',
 })}
-
 `
 const AboutMenu = styled(SubMenu)`
-
-ul {
+  ul {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -459,28 +467,26 @@ ul {
     }
   }
   ${sm({
-  padding: ' 0 0 1rem 0'
+  padding: ' 0 0 1rem 0',
 })}
 `
 
 //🔺HeaderItem(右)-user
 const UserPages = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 const UserPagesRight = styled.div`
   display: flex;
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
 `
 // 用戶名稱dropdown
 const UsernameWrapper = styled.div`
-display: flex;
-align-items: center;
-position: relative;
-
+  display: flex;
+  align-items: center;
+  position: relative;
 `
 const UserName = styled.div`
   display: flex;
@@ -500,7 +506,7 @@ const UserDropdown = styled.div`
   top: 2.5rem;
   padding: 0.75rem;
   white-space: nowrap;
-  text-align:center;
+  text-align: center;
   box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
   transition: all 0.5s ease;
   opacity: ${p => (p.$display ? '1' : '0')};
@@ -544,7 +550,7 @@ const UserDropdown = styled.div`
   marginTop: 0,
   display: p => (p.$display ? 'flex' : 'none'),
   flexWrap: 'wrap',
-  padding: '0.5rem 0'
+  padding: '0.5rem 0',
 })}
 
   /* 用偽元素製作三角形 */
@@ -554,37 +560,36 @@ const UserDropdown = styled.div`
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
-    border-right: 15px solid transparent;    
+    border-right: 15px solid transparent;
     border-bottom: 20px solid #fff;
     top: -10px;
     right: 50%;
     ${sm({
-  display: 'none'
+  display: 'none',
 })}
   }
 `
 // 購物車和Badge
 const CartIconWrapper = styled.div`
-position: relative;
-margin-right: 4px;
+  position: relative;
+  margin-right: 4px;
 `
 const Badge = styled.div`
-position: absolute;
-top:-4px;
-right: -3px;
-display: flex;
-justify-content: center;
-align-items: center;
+  position: absolute;
+  top: -4px;
+  right: -3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background: #d31414;
   width: 12px;
   height: 12px;
-  span{
+  span {
     font-size: 10px;
     color: white;
   }
 `
-
 
 export const Navbar = () => {
   const navigate = useNavigate()
@@ -598,18 +603,18 @@ export const Navbar = () => {
   const [error, setError] = useState(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   //TOKEN
-  const TOKEN = user?.accessToken;
+  const TOKEN = user?.accessToken
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'
     }
     return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMobileMenuOpen]);
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMobileMenuOpen])
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -631,7 +636,6 @@ export const Navbar = () => {
       setLoading(false)
     }
     fetchNews()
-
   }, [])
 
   useEffect(() => {
@@ -643,7 +647,7 @@ export const Navbar = () => {
   const handleLogout = async e => {
     e.preventDefault()
     dispatch(AuthUserRequests.logout(user.refreshToken))
-    store.dispatch({ type: 'RESET' }); //清除持久persist
+    store.dispatch({ type: 'RESET' }) //清除持久persist
     localStorage.removeItem('btnClicked')
     setShowDropdown({
       news: false,
@@ -671,14 +675,14 @@ export const Navbar = () => {
     user: false,
   })
   const [showProductsDropdown, setShowProductsDropdown] = useState({
-    "新品上市": false,
-    "上衣": false,
-    "外套": false,
-    "褲子": false,
-    "裙子": false,
-    "連身套裝": false,
-    "包包": false,
-    "配件": false,
+    '新品上市': false,
+    '上衣': false,
+    '外套': false,
+    '褲子': false,
+    '裙子': false,
+    '連身套裝': false,
+    '包包': false,
+    '配件': false,
   })
   return (
     <>
@@ -691,9 +695,9 @@ export const Navbar = () => {
         />
       </Helmet>
       <Announcement />
-      <HeaderWrapper $open={isMobileMenuOpen} >
+      <HeaderWrapper $open={isMobileMenuOpen}>
         <HeaderBg $offset={announcement.actived ? announcement.height : 0}>
-          <Container >
+          <Container>
             <Header>
               {/*🔺LOGO */}
               <HeaderItem $position={'left'}>
@@ -710,24 +714,30 @@ export const Navbar = () => {
                 >
                   {/* 行動版的選單上方的關閉列 */}
                   <MobileMenuHeader>
-                    <CloseBtn onClick={() => { closeSidebarMenu() }}>
+                    <CloseBtn
+                      onClick={() => {
+                        closeSidebarMenu()
+                      }}
+                    >
                       <CloseRounded />
                     </CloseBtn>
                   </MobileMenuHeader>
 
                   {/* 選單結構 */}
-                  <MainMenu >
+                  <MainMenu>
                     {/* 行動版的User區塊 */}
                     <MobileMenuWrapper>
                       {user && user.accessToken ? (
                         <>
                           <UserPages>
                             {/* 行動版用戶名稱 */}
-                            <UsernameWrapper onClick={() => {
-                              setShowDropdown(prev => {
-                                return { user: !prev.user }
-                              })
-                            }}>
+                            <UsernameWrapper
+                              onClick={() => {
+                                setShowDropdown(prev => {
+                                  return { user: !prev.user }
+                                })
+                              }}
+                            >
                               <IconButton icon={People} />
                               <UserName>
                                 {`${user.lastName} ${user.firstName} `}
@@ -751,14 +761,17 @@ export const Navbar = () => {
                                 $fillColor={'#fff'}
                               />
                               {/* 行動版購物車 */}
-                              <CartIconWrapper onClick={() => {
-                                navigate('/cart')
-                              }}>
+                              <CartIconWrapper
+                                onClick={() => {
+                                  navigate('/cart')
+                                }}
+                              >
                                 <IconButton icon={Cart1} />
                                 <Badge>
                                   <span>
-                                    {(cart?.username === user?.username)
-                                      ? cart.quantity : ""}
+                                    {cart?.username === user?.username
+                                      ? cart.quantity
+                                      : ''}
                                   </span>
                                 </Badge>
                               </CartIconWrapper>
@@ -768,10 +781,24 @@ export const Navbar = () => {
                           <UserDropdown $display={showDropdown.user}>
                             <ul>
                               <li>
-                                <Link to='/orders' onClick={() => { closeSidebarMenu() }}>訂單紀錄</Link>
+                                <Link
+                                  to='/orders'
+                                  onClick={() => {
+                                    closeSidebarMenu()
+                                  }}
+                                >
+                                  訂單紀錄
+                                </Link>
                               </li>
                               <li>
-                                <Link to='/account' onClick={() => { closeSidebarMenu() }}>修改會員資料</Link>
+                                <Link
+                                  to='/account'
+                                  onClick={() => {
+                                    closeSidebarMenu()
+                                  }}
+                                >
+                                  修改會員資料
+                                </Link>
                               </li>
                               <li>
                                 <Link onClick={handleLogout}>登出</Link>
@@ -779,36 +806,51 @@ export const Navbar = () => {
                             </ul>
                           </UserDropdown>
                         </>
-                      ) : (<>
-                        <Button
-                          type='button'
-                          onClick={() => {
-                            navigate('/register')
-                            closeSidebarMenu()
-                          }}
-                        >
-                          註冊
-                        </Button>
-                        <Button
-                          type='button'
-                          onClick={() => {
-                            navigate('/login')
-                            closeSidebarMenu()
-                          }}
-                        >
-                          登入
-                        </Button>
-                      </>
+                      ) : (
+                        <SignupAndLogin>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              navigate('/register')
+                              closeSidebarMenu()
+                            }}
+                          >
+                            註冊
+                          </button>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              navigate('/login')
+                              closeSidebarMenu()
+                            }}
+                          >
+                            登入
+                          </button>
+                        </SignupAndLogin>
                       )}
                     </MobileMenuWrapper>
                     {/* 首頁 */}
-                    <MainMenuItem >
-                      <MainMenuItemTitle to='/' onClick={() => { closeSidebarMenu() }}>首頁</MainMenuItemTitle>
+                    <MainMenuItem>
+                      <MainMenuItemTitle
+                        to='/'
+                        onClick={() => {
+                          closeSidebarMenu()
+                        }}
+                      >
+                        首頁
+                      </MainMenuItemTitle>
                     </MainMenuItem>
                     {/* 最新消息 */}
                     <MainMenuItem $open={showDropdown.news}>
                       <MainMenuItemWrapper>
-                        <MainMenuItemTitle to='/news' onClick={() => { closeSidebarMenu() }} >最新消息</MainMenuItemTitle>
+                        <MainMenuItemTitle
+                          to='/news'
+                          onClick={() => {
+                            closeSidebarMenu()
+                          }}
+                        >
+                          最新消息
+                        </MainMenuItemTitle>
                         <IconButton
                           icon={ArrowDown}
                           $size='1rem'
@@ -820,14 +862,24 @@ export const Navbar = () => {
                         />
                       </MainMenuItemWrapper>
 
-                      <NewsWrapper $display={showDropdown.news} >
+                      <NewsWrapper $display={showDropdown.news}>
                         {news.map((item, idx) => {
                           return (
                             <SubMenuLgItem key={idx}>
-                              <NewsImageWrapper to={item.linkUrl} onClick={() => { closeSidebarMenu() }}>
+                              <NewsImageWrapper
+                                to={item.linkUrl}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
                                 <img src={item.image} alt={item.title} />
                               </NewsImageWrapper>
-                              <Link to={item.linkUrl} onClick={() => { closeSidebarMenu() }}>
+                              <Link
+                                to={item.linkUrl}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
                                 <p>{item.title}</p>
                               </Link>
                             </SubMenuLgItem>
@@ -838,7 +890,14 @@ export const Navbar = () => {
                     {/* 商品列表 */}
                     <MainMenuItem $open={showDropdown.products}>
                       <MainMenuItemWrapper>
-                        <MainMenuItemTitle to='/products' onClick={() => { closeSidebarMenu() }}>商品列表</MainMenuItemTitle>
+                        <MainMenuItemTitle
+                          to='/products'
+                          onClick={() => {
+                            closeSidebarMenu()
+                          }}
+                        >
+                          商品列表
+                        </MainMenuItemTitle>
                         <IconButton
                           icon={ArrowDown}
                           $size='1rem'
@@ -851,29 +910,39 @@ export const Navbar = () => {
                       </MainMenuItemWrapper>
                       <SubMenuLg $display={showDropdown.products}>
                         <SubMenuLgItem>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["新品上市"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['新品上市']}
+                          >
                             <h4>新品上市</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "新品上市": !prev["新品上市"],
+                                  '新品上市': !prev['新品上市'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["新品上市"]} >
+                          <ThirdMenu
+                            $display={showProductsDropdown['新品上市']}
+                          >
                             <li>
-                              <Link to={`/products?release=202406`}
-                                onClick={() => { closeSidebarMenu() }}
+                              <Link
+                                to={`/products?release=202406`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
                               >
                                 202406 預購
                               </Link>
                             </li>
                             <li>
-                              <Link to={`/products?release=20240523`}
-                                onClick={() => { closeSidebarMenu() }}
+                              <Link
+                                to={`/products?release=20240523`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
                               >
                                 20240523
                               </Link>
@@ -881,208 +950,308 @@ export const Navbar = () => {
                           </ThirdMenu>
                           <br />
 
-                          <SubMenuTitleWrapper onClick={() => {
-                            navigate('/products?category=熱銷推薦')
-                            closeSidebarMenu()
-                          }}>
+                          <SubMenuTitleWrapper
+                            onClick={() => {
+                              navigate('/products?category=熱銷推薦')
+                              closeSidebarMenu()
+                            }}
+                          >
                             <h4>熱銷推薦</h4>
                           </SubMenuTitleWrapper>
                         </SubMenuLgItem>
 
                         <SubMenuLgItem>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["上衣"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['上衣']}
+                          >
                             <h4>上衣</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "上衣": !prev["上衣"],
+                                  '上衣': !prev['上衣'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["上衣"]} >
+                          <ThirdMenu $display={showProductsDropdown['上衣']}>
                             <li>
-                              <Link to={`/products?category=上衣&subCategory=無袖`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >無袖 </Link>
+                              <Link
+                                to={`/products?category=上衣&subCategory=無袖`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                無袖{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=上衣&subCategory=長袖`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >長袖</Link>
+                              <Link
+                                to={`/products?category=上衣&subCategory=長袖`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                長袖
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=上衣&subCategory=短袖`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >短袖</Link>
+                              <Link
+                                to={`/products?category=上衣&subCategory=短袖`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                短袖
+                              </Link>
                             </li>
                           </ThirdMenu>
 
-                          <SubMenuTitleWrapper $display={showProductsDropdown["外套"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['外套']}
+                          >
                             <h4>外套</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "外套": !prev["外套"],
+                                  '外套': !prev['外套'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["外套"]} >
+                          <ThirdMenu $display={showProductsDropdown['外套']}>
                             <li>
-                              <Link to={`/products?category=外套&subCategory=皮衣`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >皮衣 </Link>
+                              <Link
+                                to={`/products?category=外套&subCategory=皮衣`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                皮衣{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=外套&subCategory=西裝外套`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >西裝外套</Link>
+                              <Link
+                                to={`/products?category=外套&subCategory=西裝外套`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                西裝外套
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=外套&subCategory=連帽外套`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >連帽外套</Link>
+                              <Link
+                                to={`/products?category=外套&subCategory=連帽外套`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                連帽外套
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=外套&subCategory=針織外套`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >針織外套</Link>
+                              <Link
+                                to={`/products?category=外套&subCategory=針織外套`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                針織外套
+                              </Link>
                             </li>
                           </ThirdMenu>
                         </SubMenuLgItem>
 
                         <SubMenuLgItem>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["褲子"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['褲子']}
+                          >
                             <h4>褲子</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "褲子": !prev["褲子"],
+                                  '褲子': !prev['褲子'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["褲子"]} >
+                          <ThirdMenu $display={showProductsDropdown['褲子']}>
                             <li>
-                              <Link to={`/products?category=褲子&subCategory=長褲`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >長褲 </Link>
+                              <Link
+                                to={`/products?category=褲子&subCategory=長褲`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                長褲{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=褲子&subCategory=短褲`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >短褲</Link>
+                              <Link
+                                to={`/products?category=褲子&subCategory=短褲`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                短褲
+                              </Link>
                             </li>
                           </ThirdMenu>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["裙子"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['裙子']}
+                          >
                             <h4>裙子</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "裙子": !prev["裙子"],
+                                  '裙子': !prev['裙子'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["裙子"]} >
+                          <ThirdMenu $display={showProductsDropdown['裙子']}>
                             <li>
-                              <Link to={`/products?category=裙子&subCategory=長裙`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >長裙 </Link>
+                              <Link
+                                to={`/products?category=裙子&subCategory=長裙`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                長裙{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=裙子&subCategory=短裙`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >短裙</Link>
+                              <Link
+                                to={`/products?category=裙子&subCategory=短裙`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                短裙
+                              </Link>
                             </li>
                           </ThirdMenu>
                         </SubMenuLgItem>
                         <SubMenuLgItem>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["連身套裝"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['連身套裝']}
+                          >
                             <h4>連身套裝</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "連身套裝": !prev["連身套裝"],
+                                  '連身套裝': !prev['連身套裝'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["連身套裝"]} >
+                          <ThirdMenu
+                            $display={showProductsDropdown['連身套裝']}
+                          >
                             <li>
-                              <Link to={`/products?category=連身套裝&subCategory=連衣裙`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >連衣裙 </Link>
+                              <Link
+                                to={`/products?category=連身套裝&subCategory=連衣裙`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                連衣裙{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=連身套裝&subCategory=成套組合`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >成套組合</Link>
+                              <Link
+                                to={`/products?category=連身套裝&subCategory=成套組合`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                成套組合
+                              </Link>
                             </li>
-
                           </ThirdMenu>
                         </SubMenuLgItem>
                         <SubMenuLgItem>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["包包"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['包包']}
+                          >
                             <h4>包包</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "包包": !prev["包包"],
+                                  '包包': !prev['包包'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["包包"]} >
+                          <ThirdMenu $display={showProductsDropdown['包包']}>
                             <li>
-                              <Link to={`/products?category=包包&subCategory=肩背包`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >肩背包 </Link>
+                              <Link
+                                to={`/products?category=包包&subCategory=肩背包`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                肩背包{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=包包&subCategory=後背包`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >後背包</Link>
+                              <Link
+                                to={`/products?category=包包&subCategory=後背包`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                後背包
+                              </Link>
                             </li>
-
                           </ThirdMenu>
-                          <SubMenuTitleWrapper $display={showProductsDropdown["配件"]} >
+                          <SubMenuTitleWrapper
+                            $display={showProductsDropdown['配件']}
+                          >
                             <h4>配件</h4>
                             <IconButton
                               icon={ArrowDown}
                               $size='1rem'
                               onClick={() => {
                                 setShowProductsDropdown(prev => ({
-                                  "配件": !prev["配件"],
+                                  '配件': !prev['配件'],
                                 }))
                               }}
                             />
                           </SubMenuTitleWrapper>
-                          <ThirdMenu $display={showProductsDropdown["配件"]} >
+                          <ThirdMenu $display={showProductsDropdown['配件']}>
                             <li>
-                              <Link to={`/products?category=配件&subCategory=襪子`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >襪子 </Link>
+                              <Link
+                                to={`/products?category=配件&subCategory=襪子`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                襪子{' '}
+                              </Link>
                             </li>
                             <li>
-                              <Link to={`/products?category=配件&subCategory=披肩圍巾`}
-                                onClick={() => { closeSidebarMenu() }}
-                              >披肩圍巾</Link>
+                              <Link
+                                to={`/products?category=配件&subCategory=披肩圍巾`}
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                披肩圍巾
+                              </Link>
                             </li>
-
                           </ThirdMenu>
                         </SubMenuLgItem>
                       </SubMenuLg>
@@ -1090,8 +1259,14 @@ export const Navbar = () => {
                     {/* 關於 */}
                     <MainMenuItem $open={showDropdown.about}>
                       <MainMenuItemWrapper>
-
-                        <MainMenuItemTitle to='/about' onClick={() => { closeSidebarMenu() }}>關於</MainMenuItemTitle>
+                        <MainMenuItemTitle
+                          to='/about'
+                          onClick={() => {
+                            closeSidebarMenu()
+                          }}
+                        >
+                          關於
+                        </MainMenuItemTitle>
                         <IconButton
                           icon={ArrowDown}
                           $size='1rem'
@@ -1105,35 +1280,54 @@ export const Navbar = () => {
                       <AboutMenu $display={showDropdown.about}>
                         <ul>
                           <li>
-                            <Link to='/about?type=brand' onClick={() => { closeSidebarMenu() }}>
-                              品牌介紹</Link>
+                            <Link
+                              to='/about?type=brand'
+                              onClick={() => {
+                                closeSidebarMenu()
+                              }}
+                            >
+                              品牌介紹
+                            </Link>
                           </li>
                           <li>
-                            <Link to='/about?type=qa' onClick={() => { closeSidebarMenu() }}>
-                              購物說明</Link>
+                            <Link
+                              to='/about?type=qa'
+                              onClick={() => {
+                                closeSidebarMenu()
+                              }}
+                            >
+                              購物說明
+                            </Link>
                           </li>
                           <li>
-                            <Link to='/about?type=afterSales' onClick={() => { closeSidebarMenu() }}>
-                              退換貨政策</Link>
+                            <Link
+                              to='/about?type=afterSales'
+                              onClick={() => {
+                                closeSidebarMenu()
+                              }}
+                            >
+                              退換貨政策
+                            </Link>
                           </li>
                         </ul>
-                      </AboutMenu >
+                      </AboutMenu>
                     </MainMenuItem>
                   </MainMenu>
-
                 </MenuWrapper>
               </HeaderItem>
 
               {/*🔺user */}
               <HeaderItem $position={'right'}>
-                <UserPages >
+                <UserPages>
                   {user && user.accessToken ? (
                     <>
-                      <UsernameWrapper onClick={() => {
-                        setShowDropdown(prev => {
-                          return { user: !prev.user }
-                        })
-                      }}>
+                      <UsernameWrapper
+                        onClick={() => {
+                          setShowDropdown(prev => {
+                            return { user: !prev.user }
+                          })
+                        }}
+                      >
                         <IconButton icon={People} />
                         <UserName>{`${user.lastName} ${user.firstName} `}</UserName>
                         <IconButton
@@ -1145,17 +1339,31 @@ export const Navbar = () => {
                         <UserDropdown $display={showDropdown.user}>
                           <ul>
                             <li>
-                              <Link to='/orders' onClick={() => { closeSidebarMenu() }}>訂單紀錄</Link>
+                              <Link
+                                to='/orders'
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                訂單紀錄
+                              </Link>
                             </li>
                             <li>
-                              <Link to='/account' onClick={() => { closeSidebarMenu() }}>修改會員資料</Link>
+                              <Link
+                                to='/account'
+                                onClick={() => {
+                                  closeSidebarMenu()
+                                }}
+                              >
+                                修改會員資料
+                              </Link>
                             </li>
                             <li>
                               <Link onClick={handleLogout}>登出</Link>
                             </li>
                           </ul>
                         </UserDropdown>
-                      </UsernameWrapper >
+                      </UsernameWrapper>
 
                       <UserPagesRight>
                         <IconButton
@@ -1166,21 +1374,25 @@ export const Navbar = () => {
                           $strokeColor={'#333'}
                           $fillColor={'#fff'}
                         />
-                        <CartIconWrapper onClick={() => {
-                          navigate('/cart')
-                        }}>
-                          <IconButton
-                            icon={Cart1}
-                          />
+                        <CartIconWrapper
+                          onClick={() => {
+                            navigate('/cart')
+                          }}
+                        >
+                          <IconButton icon={Cart1} />
                           <Badge>
-                            <span>{(cart?.username === user?.username) ? cart.quantity : ""}</span>
+                            <span>
+                              {cart?.username === user?.username
+                                ? cart.quantity
+                                : ''}
+                            </span>
                           </Badge>
                         </CartIconWrapper>
                       </UserPagesRight>
                     </>
                   ) : (
-                    <>
-                      <Button
+                    <SignupAndLogin>
+                      <button
                         type='button'
                         onClick={() => {
                           navigate('/register')
@@ -1188,8 +1400,8 @@ export const Navbar = () => {
                         }}
                       >
                         註冊
-                      </Button>
-                      <Button
+                      </button>
+                      <button
                         type='button'
                         onClick={() => {
                           navigate('/login')
@@ -1197,20 +1409,24 @@ export const Navbar = () => {
                         }}
                       >
                         登入
-                      </Button>
-                    </>
+                      </button>
+                    </SignupAndLogin>
                   )}
                 </UserPages>
               </HeaderItem>
 
               {/* mobile menu trigger */}
-              <MobileMenuTrigger onClick={() => { setIsMobileMenuOpen(true) }}>
+              <MobileMenuTrigger
+                onClick={() => {
+                  setIsMobileMenuOpen(true)
+                }}
+              >
                 <MobileMenuLine />
               </MobileMenuTrigger>
             </Header>
           </Container>
-        </HeaderBg >
-      </HeaderWrapper >
+        </HeaderBg>
+      </HeaderWrapper>
     </>
   )
 }

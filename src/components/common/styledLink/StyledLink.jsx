@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const StyledLink = styled(Link)`
-color: ${p => (p.$color ? p.$color : '')};
+  color: ${p => (p.$color ? p.$color : '')};
 `

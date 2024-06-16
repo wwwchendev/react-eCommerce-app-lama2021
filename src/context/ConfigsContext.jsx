@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-const ConfigsContext = createContext({});
+import { createContext, useContext, useState } from 'react'
+const ConfigsContext = createContext({})
 
 const initCSSVariables = {
   announcement: {
@@ -11,29 +11,29 @@ const initCSSVariables = {
     used: true,
     height: 2.5,
     heightSm: 2,
-  }
-};
+  },
+}
 
 export const ConfigsProvider = ({ children }) => {
   //✅當前路徑
-  const [currentPage, setCurrentPage] = useState('/');
+  const [currentPage, setCurrentPage] = useState('/')
   //✅樣式設定
-  const [CSSVariables, setCSSVariables] = useState(initCSSVariables);
+  const [CSSVariables, setCSSVariables] = useState(initCSSVariables)
   //自定義方法
   const showAnnouncementElement = v => {
-    let newActivedState;
+    let newActivedState
     switch (v) {
       case 'show':
-        newActivedState = true;
-        break;
+        newActivedState = true
+        break
       case 'hide':
-        newActivedState = false;
-        break;
+        newActivedState = false
+        break
       case 'toggle':
-        newActivedState = !CSSVariables.announcement.actived;
-        break;
+        newActivedState = !CSSVariables.announcement.actived
+        break
       default:
-        return;
+        return
     }
     setCSSVariables(prevState => ({
       ...prevState,
@@ -41,22 +41,22 @@ export const ConfigsProvider = ({ children }) => {
         ...prevState.announcement,
         actived: newActivedState,
       },
-    }));
-  };
+    }))
+  }
   const showSidebarElement = v => {
-    let newActivedState;
+    let newActivedState
     switch (v) {
       case 'show':
-        newActivedState = true;
-        break;
+        newActivedState = true
+        break
       case 'hide':
-        newActivedState = false;
-        break;
+        newActivedState = false
+        break
       case 'toggle':
-        newActivedState = !CSSVariables.sidebar.actived;
-        break;
+        newActivedState = !CSSVariables.sidebar.actived
+        break
       default:
-        return;
+        return
     }
     setCSSVariables(prevState => ({
       ...prevState,
@@ -64,8 +64,8 @@ export const ConfigsProvider = ({ children }) => {
         ...prevState.sidebar,
         actived: newActivedState,
       },
-    }));
-  };
+    }))
+  }
 
   return (
     <ConfigsContext.Provider
@@ -79,13 +79,13 @@ export const ConfigsProvider = ({ children }) => {
     >
       {children}
     </ConfigsContext.Provider>
-  );
-};
+  )
+}
 
 export const useConfigs = () => {
-  const contextValue = useContext(ConfigsContext);
+  const contextValue = useContext(ConfigsContext)
   if (!contextValue) {
-    throw new Error('useConfigs需在有效作用域中調用');
+    throw new Error('useConfigs需在有效作用域中調用')
   }
-  return contextValue;
-};
+  return contextValue
+}

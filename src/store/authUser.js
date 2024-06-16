@@ -1,80 +1,79 @@
 /* eslint-disable no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
-import { apiCallBegan } from '@/store/api';
-
+import { createSlice } from '@reduxjs/toolkit'
+import { apiCallBegan } from '@/store/api'
 
 const initialState = {
   loading: false,
   data: null,
   error: null,
-};
+}
 
 const AuthUserSlice = createSlice({
   name: 'AuthUser',
   initialState: initialState,
   reducers: {
     requestStarted: (state, action) => {
-      state.loading = true;
-      state.error = null;
+      state.loading = true
+      state.error = null
     },
     requestFailed: (state, action) => {
-      state.loading = false;
-      const data = action.payload.errors;
-      console.log(data);
-      state.error = data;
+      state.loading = false
+      const data = action.payload.errors
+      console.log(data)
+      state.error = data
     },
     loginSuccess: (state, action) => {
-      state.loading = false;
-      const { data } = action.payload;
-      state.data = { ...data };
+      state.loading = false
+      const { data } = action.payload
+      state.data = { ...data }
     },
     logoutSuccess: (state, action) => {
-      state.loading = false;
-      state.data = null;
+      state.loading = false
+      state.data = null
     },
     registerSuccess: (state, action) => {
-      state.loading = false;
-      const { data } = action.payload;
-      state.data = { ...data };
+      state.loading = false
+      const { data } = action.payload
+      state.data = { ...data }
     },
     refreshDataSuccess: (state, action) => {
-      const updatedData = action.payload.data;
+      const updatedData = action.payload.data
       state.data = {
         ...state.data,
-        ...updatedData
-      };
-      state.loading = false;
+        ...updatedData,
+      }
+      state.loading = false
     },
     refreshTokenSuccess: (state, action) => {
-      state.loading = false;
-      const { data } = action.payload;
+      state.loading = false
+      const { data } = action.payload
       state.data = {
         ...state.data,
-        accessToken: data.accessToken
-      };
+        accessToken: data.accessToken,
+      }
     },
     updatePasswordSuccess: (state, action) => {
-      state.loading = false;
-      state.data = action.payload.data;
+      state.loading = false
+      state.data = action.payload.data
     },
     forgetPasswordSuccess: (state, action) => {
-      state.loading = false;
-      const data = action.payload;
-      state.data = { 'message': data.message };
+      state.loading = false
+      const data = action.payload
+      state.data = { 'message': data.message }
     },
     resetPasswordSuccess: (state, action) => {
-      state.loading = false;
-      const data = action.payload;
-      state.data = { 'message': data.message };
+      state.loading = false
+      const data = action.payload
+      state.data = { 'message': data.message }
     },
     reset: (state, action) => {
-      state.loading = false;
-      state.data = null;
-      state.error = null;
+      state.loading = false
+      state.data = null
+      state.error = null
     },
   },
-});
-export default AuthUserSlice.reducer;
+})
+export default AuthUserSlice.reducer
 
 export const {
   requestStarted,
@@ -88,7 +87,7 @@ export const {
   resetPasswordSuccess,
   refreshDataSuccess,
   reset,
-} = AuthUserSlice.actions;
+} = AuthUserSlice.actions
 
 export const loginRequest = data => {
   return apiCallBegan({
@@ -98,8 +97,8 @@ export const loginRequest = data => {
     onStart: requestStarted.type,
     onSuccess: loginSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const logoutRequest = refreshToken => {
   return apiCallBegan({
     url: `/auth/logout/user`,
@@ -108,8 +107,8 @@ export const logoutRequest = refreshToken => {
     onStart: requestStarted.type,
     onSuccess: logoutSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const registerRequest = data => {
   return apiCallBegan({
     url: `/auth/register/user`,
@@ -118,12 +117,11 @@ export const registerRequest = data => {
     onStart: requestStarted.type,
     onSuccess: registerSuccess.type,
     onError: requestFailed.type,
-  });
-};
-
+  })
+}
 
 export const refreshTokenRequest = (TOKEN, data) => {
-  console.log('TOKEN過期，自動請求更新');
+  console.log('TOKEN過期，自動請求更新')
   return apiCallBegan({
     url: `/auth/refreshToken/user`,
     method: 'post',
@@ -132,10 +130,8 @@ export const refreshTokenRequest = (TOKEN, data) => {
     onStart: requestStarted.type,
     onSuccess: refreshTokenSuccess.type,
     onError: requestFailed.type,
-  });
-};
-
-
+  })
+}
 
 export const updatePasswordRequest = (TOKEN, data) => {
   return apiCallBegan({
@@ -146,8 +142,8 @@ export const updatePasswordRequest = (TOKEN, data) => {
     onStart: requestStarted.type,
     onSuccess: updatePasswordSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const forgetPasswordRequest = data => {
   return apiCallBegan({
     url: `/auth/forgetPassword/user`,
@@ -156,8 +152,8 @@ export const forgetPasswordRequest = data => {
     onStart: requestStarted.type,
     onSuccess: forgetPasswordSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const resetPasswordRequest = (resetPasswordToken, data) => {
   return apiCallBegan({
     url: `/auth/resetPassword/user?token=${resetPasswordToken}`,
@@ -166,8 +162,8 @@ export const resetPasswordRequest = (resetPasswordToken, data) => {
     onStart: requestStarted.type,
     onSuccess: resetPasswordSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const refreshDataRequest = (TOKEN, username) => {
   return apiCallBegan({
     url: `/user/${username}`,
@@ -176,8 +172,8 @@ export const refreshDataRequest = (TOKEN, username) => {
     onStart: requestStarted.type,
     onSuccess: refreshDataSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 
 export const AuthUserRequests = {
   login: loginRequest,
@@ -187,5 +183,5 @@ export const AuthUserRequests = {
   updatePassword: updatePasswordRequest,
   forgetPassword: forgetPasswordRequest,
   resetPassword: resetPasswordRequest,
-  refreshData: refreshDataRequest
-};
+  refreshData: refreshDataRequest,
+}

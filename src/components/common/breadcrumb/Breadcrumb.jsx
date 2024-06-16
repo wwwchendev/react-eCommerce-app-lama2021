@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { ArrowRight } from '@material-ui/icons';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { ArrowRight } from '@material-ui/icons'
 
 const Container = styled.nav`
-margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   ol {
     display: flex;
-    align-items: center;    
+    align-items: center;
     width: 100%;
     list-style: none;
     padding: 0;
@@ -24,20 +24,19 @@ margin-bottom: 1.5rem;
       }
     }
   }
-
-`;
+`
 
 export const Breadcrumb = ({ paths }) => {
-  const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [breadcrumbs, setBreadcrumbs] = useState([])
 
   useEffect(() => {
     // Set breadcrumbs data here
     const breadcrumbData = [
       { label: '首頁', path: '/' },
       { label: '關於', path: '/about' },
-    ];
-    setBreadcrumbs(paths ? paths : breadcrumbData);
-  }, [paths]);
+    ]
+    setBreadcrumbs(paths ? paths : breadcrumbData)
+  }, [paths])
 
   return (
     <Container>
@@ -48,7 +47,7 @@ export const Breadcrumb = ({ paths }) => {
               <li key={index}>
                 <span>{breadcrumb.label}</span>
               </li>
-            );
+            )
           } else {
             return (
               <React.Fragment key={index}>
@@ -57,10 +56,10 @@ export const Breadcrumb = ({ paths }) => {
                 </li>
                 <ArrowRight />
               </React.Fragment>
-            );
+            )
           }
         })}
       </ol>
     </Container>
-  );
-};
+  )
+}

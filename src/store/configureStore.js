@@ -32,14 +32,14 @@ const appReducer = combineReducers({
   cart: cartReducer,
   order: orderReducer,
   logistic: logisticReducer,
-});
+})
 
 const rootReducer = (state, action) => {
   if (action.type === 'RESET') {
-    state = undefined; // 重置所有狀態(用於登出)
+    state = undefined // 重置所有狀態(用於登出)
   }
-  return appReducer(state, action);
-};
+  return appReducer(state, action)
+}
 
 const persistConfig = {
   key: 'root',
@@ -59,7 +59,7 @@ const store = configureStore({
     }).concat(
       // logger,
       api,
-      error
+      error,
     ),
 })
 

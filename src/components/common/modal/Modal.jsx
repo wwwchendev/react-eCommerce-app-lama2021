@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { md, sm } from '@/components/layout/responsive';
-import { Button } from '@/components/common';
-import { Close } from '@material-ui/icons';
+import styled from 'styled-components'
+import { md, sm } from '@/components/layout/responsive'
+import { Button } from '@/components/common'
+import { Close } from '@material-ui/icons'
 const ModalContainer = styled.div`
   display: ${props => (props.open ? 'block' : 'none')};
   position: fixed;
@@ -11,8 +11,7 @@ const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  /* border: 1px solid #20fdb4; */
-`;
+`
 const CloseBtn = styled(Button)`
   position: absolute;
   background: transparent;
@@ -22,10 +21,9 @@ const CloseBtn = styled(Button)`
   right: -16px;
   color: black;
   height: 1.5rem;
-`;
+`
 const ModalContent = styled.div`
   background-color: white;
-  /* border: 1px solid #20fdb4; */
   overflow: hidden;
   border-radius: 8px;
   padding: ${p => (p.$padding ? p.$padding : '25px')};
@@ -46,7 +44,7 @@ const ModalContent = styled.div`
   width: '90%',
   padding: '20px 10px',
 })};
-`;
+`
 
 export const Modal = ({
   open,
@@ -65,5 +63,5 @@ export const Modal = ({
         </CloseBtn>
       </ModalContent>
     </ModalContainer>
-  );
-};
+  )
+}

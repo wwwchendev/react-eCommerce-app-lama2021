@@ -14,20 +14,19 @@ const bounceAnimation = keyframes`
 `
 
 const ToTopButton = styled.button`
-z-index: 888;
+  z-index: 888;
   position: fixed;
-  bottom:28px;
+  bottom: 28px;
   right: 24px;
   background-color: #fff;
   border: none;
   display: flex;
   cursor: ${p => (p.$showButton ? 'pointer' : '')};
-  padding:6px 8px;
+  padding: 6px 8px;
   outline: none;
   opacity: ${p => (p.$showButton ? 1 : 0)};
   transition: opacity ease 0.8s;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  /* border:1.5px solid #000000; */
   border-radius: 5px;
 `
 
