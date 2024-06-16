@@ -113,8 +113,11 @@ const FormRadioWrapper = styled.div`
   border-radius: 5px;
 `
 const FormRadio = styled.div`
+div{
   display: flex;
   align-items: center;
+}
+  
   label {
     cursor: pointer;
     font-size: 15px;
@@ -517,26 +520,30 @@ export const Register = () => {
                       <InputWrapper>
                         <FormRadioWrapper $border={promptMessage.gender}>
                           <FormRadio>
-                            <Input
-                              type='radio'
-                              id='先生'
-                              name='gender'
-                              value='先生'
-                              checked={formInput.gender === '先生'}
-                              onChange={handleChange}
-                            />
-                            <label htmlFor='先生'>先生</label>
+                            <div>
+                              <Input
+                                type='radio'
+                                id='先生'
+                                name='gender'
+                                value='先生'
+                                checked={formInput.gender === '先生'}
+                                onChange={handleChange}
+                              />
+                              <label htmlFor='先生'>先生</label>
+                            </div>
                           </FormRadio>
                           <FormRadio>
-                            <Input
-                              type='radio'
-                              id='小姐'
-                              name='gender'
-                              value='小姐'
-                              checked={formInput.gender === '小姐'}
-                              onChange={handleChange}
-                            />
-                            <label htmlFor='小姐'>小姐</label>
+                            <div>
+                              <Input
+                                type='radio'
+                                id='小姐'
+                                name='gender'
+                                value='小姐'
+                                checked={formInput.gender === '小姐'}
+                                onChange={handleChange}
+                              />
+                              <label htmlFor='小姐'>小姐</label>
+                            </div>
                           </FormRadio>
                         </FormRadioWrapper>
                         <PromptMessage>{promptMessage.gender}</PromptMessage>
@@ -721,6 +728,6 @@ export const Register = () => {
           </Grid>
         </Container>
       </Wrapper>
-    </Layout.PageLayout>
+    </Layout.PageLayout >
   )
 }
