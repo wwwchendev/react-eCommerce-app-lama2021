@@ -200,7 +200,10 @@ const Title = styled.h1`
   font-size: 30px;
   margin: 1rem 0;
   letter-spacing: 1px;
-  ${md({ margin: '1rem 0 ' })}
+  ${md({
+  margin: '1rem 0 ',
+  fontSize: '28px'
+})}
 `
 const ProductPriceWrapper = styled.div`
   display: flex;
@@ -289,14 +292,6 @@ export const Product = () => {
   const cartState = useSelector(state => state.cart)
   const [showAddLikedSuccess, setShowAddLikedSuccess] = useState(false)
   //加購購物車選項
-  // {
-  //   "productId": "66124ab71837fef25e1f1e79",
-  //   "variant": {
-  //     "variantId": "66124ab71837fef25e1f1e7a",
-  //     "specificationId": "66124ab71837fef25e1f1e7b",
-  //     "quantity": 1
-  //   }
-  // }
   const [quantity, setQuantity] = useState(1)
   const [currentVariantIndex, setCurrentVariantIndex] = useState(null)
   const [currentSpecificationIndex, setCurrentSpecificationIndex] =
@@ -320,7 +315,6 @@ export const Product = () => {
 
   const likedProductState = useSelector(state => state.likedProduct)
   const [operateType, setOperateType] = useState('')
-  const [showLoginConfirm, setShowLoginConfirm] = useState(false)
   const [showAlertDuplicate, setShowAlertDuplicate] = useState(false)
 
   const verifyDuplicate = () => {

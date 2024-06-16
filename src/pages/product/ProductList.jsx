@@ -24,6 +24,7 @@ const Aside = styled(Grid)`
 const ProductViewMode = styled.div`
   display: flex;
   gap: 0 1rem;
+  color:#333;
 `
 
 const SorterWidget = styled.aside`
