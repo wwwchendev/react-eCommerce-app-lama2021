@@ -1,21 +1,20 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Container as MuiContainer, Grid } from '@material-ui/core';
-import Icon from '@/components/icon';
-import * as Layout from '@/components/layout';
-import { StyledLink } from '@/components/common';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
-import { xs, sm, md } from '@/components/layout/responsive';
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { Container as MuiContainer, Grid } from '@material-ui/core'
+import Icon from '@/components/icon'
+import * as Layout from '@/components/layout'
+import { StyledLink } from '@/components/common'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { useTheme } from '@material-ui/core/styles'
+import { xs, sm, md } from '@/components/layout/responsive'
 
-const { BrokenLink } = Icon;
-const { SEO } = Layout;
-
+const { BrokenLink } = Icon
+const { SEO } = Layout
 
 const StyledContainer = styled(MuiContainer)`
   height: 100%;
   height: calc(100vh - 300px);
-`;
+`
 
 const Message = styled.div`
   position: relative;
@@ -23,7 +22,7 @@ const Message = styled.div`
   border: 1px solid #333;
   border-radius: 5px;
   color: #999;
-  text-align: center; 
+  text-align: center;
 
   h1 {
     color: #333;
@@ -43,7 +42,7 @@ const Message = styled.div`
     margin: 0 auto;
     margin-top: 50px;
   }
-`;
+`
 
 const ImageWrapper = styled.div`
   position: absolute;
@@ -55,26 +54,37 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
+`
 
 export const NotFound = () => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
     <Layout.PageLayout>
       <SEO title='找不到該頁面 | RESTART-SHOP' description={null} url={null} />
-      <StyledContainer maxWidth='lg' >
-        <Grid container justifyContent='center' alignItems='center' style={{ height: '100%' }}>
+      <StyledContainer maxWidth='lg'>
+        <Grid
+          container
+          justifyContent='center'
+          alignItems='center'
+          style={{ height: '100%' }}
+        >
           <Grid item xs={12} sm={8} md={7} lg={5}>
             <Message>
               <h1>Not Found</h1>
-              <p>您所請求的網址資源無效，該資源可能已移除或暫時無法使用。請於稍後重新嘗試，或點此 <Link to="/"> 回首頁</Link></p>
-              <StyledLink to="/">回首頁</StyledLink>
-              <ImageWrapper> <BrokenLink /></ImageWrapper>
+              <p>
+                您所請求的網址資源無效，該資源可能已移除或暫時無法使用。請於稍後重新嘗試，或點此{' '}
+                <Link to='/'> 回首頁</Link>
+              </p>
+              <StyledLink to='/'>回首頁</StyledLink>
+              <ImageWrapper>
+                {' '}
+                <BrokenLink />
+              </ImageWrapper>
             </Message>
           </Grid>
         </Grid>
       </StyledContainer>
     </Layout.PageLayout>
-  );
-};
+  )
+}

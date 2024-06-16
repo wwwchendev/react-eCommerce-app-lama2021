@@ -1,5 +1,5 @@
 //context
-import { ConfigsProvider } from './context/ConfigsContext';
+import { ConfigsProvider } from './context/ConfigsContext'
 // import { OffsetProvider } from '@/context/OffsetContext'
 //redux
 import store, { persistor } from '@/store/configureStore'
@@ -30,7 +30,7 @@ import {
   Account,
   Orders,
   SingleOrder,
-  LikedProducts
+  LikedProducts,
 } from '@/pages'
 
 const router = createBrowserRouter(
@@ -85,48 +85,84 @@ const router = createBrowserRouter(
         },
         {
           path: '/forgetPassword',
-          element: <RedirectIfLoggedIn>
-            <ForgetPassword />
-          </RedirectIfLoggedIn>,
+          element: (
+            <RedirectIfLoggedIn>
+              <ForgetPassword />
+            </RedirectIfLoggedIn>
+          ),
         },
         {
           path: '/resetPassword',
-          element: <RedirectIfLoggedIn>
-            <ResetPassword />
-          </RedirectIfLoggedIn>,
+          element: (
+            <RedirectIfLoggedIn>
+              <ResetPassword />
+            </RedirectIfLoggedIn>
+          ),
         },
         {
           path: '/cart',
-          element: <PrivateRoute><Cart /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/checkout',
-          element: <PrivateRoute><Checkout /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/payment/:orderNumber',
-          element: <PrivateRoute><Payment /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <Payment />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/orders',
-          element: <PrivateRoute><Orders /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <Orders />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/orders/:orderNumber',
-          element: <PrivateRoute><SingleOrder /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <SingleOrder />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/account',
-          element: <PrivateRoute><Account /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <Account />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/updatePassword',
-          element: <PrivateRoute><UpdatePassword /></PrivateRoute>,
+          element: (
+            <PrivateRoute>
+              <UpdatePassword />
+            </PrivateRoute>
+          ),
         },
         {
           path: '/likedProducts',
-          element: <PrivateRoute><LikedProducts /></PrivateRoute>,
-        }
+          element: (
+            <PrivateRoute>
+              <LikedProducts />
+            </PrivateRoute>
+          ),
+        },
       ],
     },
   ],

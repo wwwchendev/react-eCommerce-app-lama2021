@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components'
 const buttonHoverAnimation = keyframes`
   0% {
     transform: scale(1);
@@ -15,7 +15,7 @@ const buttonHoverAnimation = keyframes`
   100% {
     transform: scale(1);
   }
-`;
+`
 
 export const Button = styled.button`
   border: ${p => (p.$border ? p.$border : 'none')};
@@ -25,7 +25,6 @@ export const Button = styled.button`
   color: ${p => (p.$color ? p.$color : '#fff')};
   cursor: pointer;
   width: ${p => (p.$width ? p.$width : '80px')};
-  /* border: 1px solid red; */
   &:disabled {
     background-color: ${p => (p.$bg ? p.$bg : '#cccccc')};
     color: #8d8d8d;
@@ -49,4 +48,4 @@ export const Button = styled.button`
         animation: ${buttonHoverAnimation} 1s ease-in-out;
       }
     `}
-`;
+`

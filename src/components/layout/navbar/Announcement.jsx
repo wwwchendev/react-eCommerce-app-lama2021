@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 //redux
 import { announceList } from '@/utils/data'
-import { useConfigs } from '../../../context/ConfigsContext';
+import { useConfigs } from '../../../context/ConfigsContext'
 //components
 import styled from 'styled-components'
 import { CloseRounded } from '@material-ui/icons'
@@ -42,8 +42,6 @@ const CloseBtn = styled.button`
 `
 const Wrapper = styled.div`
   height: 100%;
-  /* transform: translateY(${p => p.$announceIndex * p.$elHeight * -1}rem); */
-  /* transition: all ${animationDuration}ms ease; */
 `
 const Link = styled.a`
   display: flex;
@@ -52,12 +50,12 @@ const Link = styled.a`
   height: ${p => p.$elHeight}rem;
   text-decoration: none;
   color: #ffffff;
-  letter-spacing:1px;
-  font-size:14px;
+  letter-spacing: 1px;
+  font-size: 14px;
 `
 
 const Announcement = () => {
-  const { CSSVariables, showAnnouncementElement } = useConfigs();
+  const { CSSVariables, showAnnouncementElement } = useConfigs()
   const announcement = CSSVariables.announcement
   const handleAnnouncementClose = () => {
     showAnnouncementElement('hide')
@@ -74,11 +72,16 @@ const Announcement = () => {
   }, [])
   return (
     <>
-      {announcement.actived &&
+      {announcement.actived && (
         <Container $elHeight={announcement.height}>
-          <Wrapper $announceIndex={announceIndex} $elHeight={announcement.height}>
+          <Wrapper
+            $announceIndex={announceIndex}
+            $elHeight={announcement.height}
+          >
             {announceList.map((announce, idx) => {
-              if (idx !== announceIndex) { return }
+              if (idx !== announceIndex) {
+                return
+              }
               return (
                 <Link
                   href={announce.url}
@@ -96,8 +99,8 @@ const Announcement = () => {
             <CloseRounded />
           </CloseBtn>
         </Container>
-      }
+      )}
     </>
   )
 }
-export default Announcement;
+export default Announcement

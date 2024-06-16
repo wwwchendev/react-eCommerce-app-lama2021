@@ -1,55 +1,55 @@
 /* eslint-disable no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit';
-import { apiCallBegan } from '@/store/api';
+import { createSlice } from '@reduxjs/toolkit'
+import { apiCallBegan } from '@/store/api'
 
 const initialState = {
   data: null,
   loading: false,
   error: null,
-};
+}
 
 const logisticSlice = createSlice({
   name: 'Logistic',
   initialState: initialState,
   reducers: {
     requestStarted: (state, action) => {
-      state.loading = true;
-      state.error = null;
+      state.loading = true
+      state.error = null
     },
     requestFailed: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+      state.loading = false
+      state.error = action.payload
     },
     requestLogisticsSuccess: (state, action) => {
-      state.loading = false;
+      state.loading = false
       // console.log(action.payload.data);
-      state.data = action.payload.data;
+      state.data = action.payload.data
     },
     addLogisticSuccess: (state, action) => {
-      state.loading = false;
-      console.log('state', action.payload);
-      state.data.unshift(action.payload.data);
+      state.loading = false
+      console.log('state', action.payload)
+      state.data.unshift(action.payload.data)
     },
     updateLogisticSuccess: (state, action) => {
-      const updatedData = action.payload.data;
+      const updatedData = action.payload.data
       // console.log(action.payload);
       const index = state.data.findIndex(
         item => item.logisticNumber === updatedData.logisticNumber,
-      );
+      )
       if (index !== -1) {
         state.data[index] = {
           ...state.data[index],
           ...updatedData,
-        };
+        }
       }
-      state.loading = false;
+      state.loading = false
     },
     clearLogisticError: (state, action) => {
-      state.error = null;
+      state.error = null
     },
   },
-});
-export default logisticSlice.reducer;
+})
+export default logisticSlice.reducer
 
 export const {
   requestStarted,
@@ -58,9 +58,9 @@ export const {
   addLogisticSuccess,
   updateLogisticSuccess,
   clearLogisticError,
-} = logisticSlice.actions;
+} = logisticSlice.actions
 
-const apiPath = '/logistic';
+const apiPath = '/logistic'
 export const getLogistics = TOKEN => {
   //請從react元件當中獲取token並傳遞參數
   return apiCallBegan({
@@ -71,8 +71,8 @@ export const getLogistics = TOKEN => {
     onStart: requestStarted.type,
     onSuccess: requestLogisticsSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const addLogistic = (TOKEN, data) => {
   //請從react元件當中獲取token並傳遞參數
   return apiCallBegan({
@@ -83,8 +83,8 @@ export const addLogistic = (TOKEN, data) => {
     onStart: requestStarted.type,
     onSuccess: addLogisticSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 export const updateLogistic = (TOKEN, logisticNumber, data) => {
   //請從react元件當中獲取token並傳遞參數
   return apiCallBegan({
@@ -95,11 +95,11 @@ export const updateLogistic = (TOKEN, logisticNumber, data) => {
     onStart: requestStarted.type,
     onSuccess: updateLogisticSuccess.type,
     onError: requestFailed.type,
-  });
-};
+  })
+}
 
 export const logisticRequests = {
   getAll: getLogistics,
   create: addLogistic,
   update: updateLogistic,
-};
+}

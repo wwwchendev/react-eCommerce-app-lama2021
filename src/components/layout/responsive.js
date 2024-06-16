@@ -4,10 +4,9 @@ export const breakpoints = {
   md: 960,
   lg: 1280,
   xl: 1920,
-};
+}
 
-
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles'
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -18,33 +17,32 @@ const theme = createTheme({
       xl: breakpoints.xl,
     },
   },
-});
-export default theme;
+})
+export default theme
 
-
-import { css } from 'styled-components';
-export const xs = (styles) => css`
+import { css } from 'styled-components'
+export const xs = styles => css`
   @media (max-width: ${breakpoints.sm - 1}px) {
     ${styles}
   }
-`;
-export const sm = (styles) => css`
+`
+export const sm = styles => css`
   @media (max-width: ${breakpoints.md - 1}px) {
     ${styles}
   }
-`;
-export const md = (styles) => css`
+`
+export const md = styles => css`
   @media (max-width: ${breakpoints.lg - 1}px) {
     ${styles}
   }
-`;
-export const lg = (styles) => css`
+`
+export const lg = styles => css`
   @media (max-width: ${breakpoints.xl - 1}px) {
     ${styles}
   }
-`;
-export const xl = (styles) => css`
+`
+export const xl = styles => css`
   @media (min-width: ${breakpoints.xl}px) {
     ${styles}
   }
-`;
+`

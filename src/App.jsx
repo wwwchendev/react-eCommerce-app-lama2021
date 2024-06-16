@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import * as Layout from '@/components/layout';
+import { useEffect, useState, useRef } from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
+import * as Layout from '@/components/layout'
 import { CookieConsent } from '@/components/layout'
-import { useCookies } from 'react-cookie';
-import { useLocation, Outlet, Link } from 'react-router-dom';
-
+import { useCookies } from 'react-cookie'
+import { useLocation, Outlet, Link } from 'react-router-dom'
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -31,25 +30,20 @@ const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
-`;
+`
 
 const Container = styled.div`
-position: relative;
-height: 100%;
-  /* display: flex;
-  flex-direction: column;
   position: relative;
-  overflow: hidden; */
-  
-`;
+  height: 100%;
+`
 
 function App() {
-  const [cookies] = useCookies(["cookieConsent"])
-  const { pathname } = useLocation();
+  const [cookies] = useCookies(['cookieConsent'])
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <>

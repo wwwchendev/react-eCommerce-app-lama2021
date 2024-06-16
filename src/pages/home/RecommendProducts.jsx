@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 //components
-import * as Layout from '@/components/layout';
+import * as Layout from '@/components/layout'
 import styled from 'styled-components'
 import customAxios from '@/utils/axios/customAxios'
-import { ProductCard, ProductCards } from '@/components/common';
-import { useDispatch, useSelector } from 'react-redux';
-import { Grid } from '@material-ui/core';
-
+import { ProductCard, ProductCards } from '@/components/common'
+import { useDispatch, useSelector } from 'react-redux'
+import { Grid } from '@material-ui/core'
 
 const Container = styled.div`
-position:relative;
-`;
+  position: relative;
+`
 
 const RecommendProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   const cartState = useSelector(state => state.cart)
   const likedProductState = useSelector(state => state.likedProduct)
@@ -26,26 +25,24 @@ const RecommendProducts = () => {
         const response = await customAxios.post(
           `${import.meta.env.VITE_APIURL}/product/searchByCategory?limit=8`,
           {
-            categoryName: "熱銷推薦"
-          }
-        );
-        const data = response.data;
-        setProducts(data.data);
-
+            categoryName: '熱銷推薦',
+          },
+        )
+        const data = response.data
+        setProducts(data.data)
       } catch (error) {
-        console.error(error);
-        setError('無法獲取最新消息。');
+        console.error(error)
+        setError('無法獲取最新消息。')
       }
-      setLoading(false);
-    };
-    fetchProducts();
-  }, []);
-  ;
-  if (error) return <p>{error}</p>;
+      setLoading(false)
+    }
+    fetchProducts()
+  }, [])
+  if (error) return <p>{error}</p>
 
   return (
     <>
-      <Container >
+      <Container>
         {(cartState.loading || likedProductState.loading || loading) && (
           <Layout.Loading
             type={'spin'}
@@ -55,13 +52,10 @@ const RecommendProducts = () => {
           />
         )}
 
-        <ProductCards
-          $viewMode={'grid'}
-          products={products}
-        />
-      </Container >
+        <ProductCards $viewMode={'grid'} products={products} />
+      </Container>
     </>
-  );
-};
+  )
+}
 
-export default RecommendProducts;
+export default RecommendProducts

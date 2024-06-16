@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'
 //components
-import styled from 'styled-components';
-import { IconButton } from '@/components/common';
-import { md, sm } from '@/components/layout/responsive';
+import styled from 'styled-components'
+import { IconButton } from '@/components/common'
+import { md, sm } from '@/components/layout/responsive'
 import Icon from '@/components/icon'
 const { Heart, Cart1, People, Search: SearchIcon } = Icon
 
@@ -23,15 +23,15 @@ const SearchContainer = styled.form`
     font-size: 1rem;
     ${md({ width: '100%' })}
   }
-    ${sm({ display: 'none' })}
-`;
+  ${sm({ display: 'none' })}
+`
 
 export const Search = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault()
     if (searchTerm !== '') {
       navigate(`/products?search=${searchTerm}`)
       setSearchTerm('')
@@ -39,13 +39,15 @@ export const Search = () => {
   }
   return (
     <SearchContainer onSubmit={handleSubmit}>
-      <input type="text" placeholder="搜尋商品.." value={searchTerm} onChange={(e) => { setSearchTerm(e.target.value) }} />
-      <IconButton
-        type="submit"
-        icon={SearchIcon}
-        onClick={handleSubmit}
+      <input
+        type='text'
+        placeholder='搜尋商品..'
+        value={searchTerm}
+        onChange={e => {
+          setSearchTerm(e.target.value)
+        }}
       />
+      <IconButton type='submit' icon={SearchIcon} onClick={handleSubmit} />
     </SearchContainer>
-
   )
 }

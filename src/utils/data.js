@@ -7,7 +7,6 @@ export const shopInfo = {
   mail: 'customer@restart.com',
 }
 
-
 export const announceList = [
   {
     title: '滿額免運：購物滿2,000元，運費全免 / 限台澎金馬',

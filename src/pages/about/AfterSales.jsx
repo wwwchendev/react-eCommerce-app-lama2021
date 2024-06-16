@@ -1,50 +1,63 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import { xs, md, sm } from '@/components/layout/responsive';
+import { xs, md, sm } from '@/components/layout/responsive'
 
 const Wrapper = styled.div`
-line-height: 2;
-h1{ 
-  font-size: 1.4rem;
-  font-family:  monospace;
-}
-h2{font-size: 1.2rem;}
-ul{list-style-type:decimal}
-section{margin-bottom:1rem}
-img{
-  max-width: 100%;
-  width: 100%;
-}
+  line-height: 2;
+  h1 {
+    font-size: 1.4rem;
+    font-family: monospace;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  ul {
+    list-style-type: decimal;
+  }
+  section {
+    margin-bottom: 1rem;
+  }
+  img {
+    max-width: 100%;
+    width: 100%;
+  }
 `
 const ImageContainer = styled.div`
-display: ${p => p.$size === "default" ? "block" : "none"};
-${xs({
-  display: p => p.$size === "small" ? "block" : "none"
-})}
+  display: ${p => (p.$size === 'default' ? 'block' : 'none')};
+  ${xs({
+    display: p => (p.$size === 'small' ? 'block' : 'none'),
+  })}
 `
 const AfterSales = () => {
-
   return (
     <Wrapper>
       <section>
-        <ImageContainer $size="small">
-          <img src='/images/about/returnProcessSmall.png' alt='returnProcessSmall' width='100%' />
+        <ImageContainer $size='small'>
+          <img
+            src='/images/about/returnProcessSmall.png'
+            alt='returnProcessSmall'
+            width='100%'
+          />
         </ImageContainer>
-        <ImageContainer $size="default">
+        <ImageContainer $size='default'>
           <img src='/images/about/returnProcess.png' alt='returnProcess' />
         </ImageContainer>
-        <p>我們重視每一位顧客的購物體驗，以下是我們的售後服務政策，請您詳閱以確保您的權益。</p>
+        <p>
+          我們重視每一位顧客的購物體驗，以下是我們的售後服務政策，請您詳閱以確保您的權益。
+        </p>
       </section>
       <section>
         <h1>一般退換貨政策</h1>
         <ul>
           <li>
             <h2>退換貨期限</h2>
-            自收到商品當日起計算，您有 7 天的猶豫期來申請退換貨服務（非試用期）。
+            自收到商品當日起計算，您有 7
+            天的猶豫期來申請退換貨服務（非試用期）。
           </li>
           <li>
             <h2>申請方式</h2>
-            請在猶豫期內透過 LINE 或 Email 與我們聯繫，提供訂單編號、姓名及瑕疵圖片（如適用）。
+            請在猶豫期內透過 LINE 或 Email
+            與我們聯繫，提供訂單編號、姓名及瑕疵圖片（如適用）。
           </li>
           <li>
             <h2>退換貨次數限制</h2>
@@ -94,7 +107,8 @@ const AfterSales = () => {
         <ul>
           <li>
             <h2>無法退換貨品項</h2>
-            包括 NG 品、SAMPLE 樣品、50% 過季與零碼出清品、1:1 手工大衣、飾品、淺色系衣褲、貼身打底衣物、含亞麻製品、針織/毛衣類等。
+            包括 NG 品、SAMPLE 樣品、50% 過季與零碼出清品、1:1
+            手工大衣、飾品、淺色系衣褲、貼身打底衣物、含亞麻製品、針織/毛衣類等。
           </li>
           <li>
             <h2>貼身衣物</h2>
@@ -121,7 +135,9 @@ const AfterSales = () => {
         </ul>
       </section>
 
-      <p>以上內容我方保有變更修改之權利，若有任何問題，歡迎隨時聯繫客服，我們將竭誠為您服務。</p>
+      <p>
+        以上內容我方保有變更修改之權利，若有任何問題，歡迎隨時聯繫客服，我們將竭誠為您服務。
+      </p>
       <p>最新修訂日期：2024/05/18</p>
     </Wrapper>
   )

@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { md, sm } from '@/components/layout/responsive';
-import InfoIcon from './InfoIcon';
-import CartCheckIcon from './CartCheckIcon';
-import SuccessIcon from './SuccessIcon';
-import PartyHornIcon from './PartyHornIcon';
+import styled from 'styled-components'
+import { md, sm } from '@/components/layout/responsive'
+import InfoIcon from './InfoIcon'
+import CartCheckIcon from './CartCheckIcon'
+import SuccessIcon from './SuccessIcon'
+import PartyHornIcon from './PartyHornIcon'
 import { useEffect, useState } from 'react'
-import Icon from '@/components/icon';
-const { HeartTick, HeartAdd, HeartRemove } = Icon;
+import Icon from '@/components/icon'
+const { HeartTick, HeartAdd, HeartRemove } = Icon
 
 const AlertContainer = styled.div`
   display: block;
@@ -17,8 +17,7 @@ const AlertContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-
-`;
+`
 
 const AlertContent = styled.div`
   position: absolute;
@@ -41,9 +40,9 @@ const AlertContent = styled.div`
     letter-spacing: 2px;
   }
   ${sm({
-  width: '90%',
-})};
-`;
+    width: '90%',
+  })};
+`
 
 const CloseBtn = styled.button`
   background: transparent;
@@ -61,7 +60,7 @@ const CloseBtn = styled.button`
   font-size: 16px;
   margin: 0 auto;
   margin-top: 0.5rem;
-`;
+`
 
 const IconWrapper = styled.div`
   height: 3rem;
@@ -71,43 +70,43 @@ const IconWrapper = styled.div`
     max-width: 100%;
     max-height: 100%;
   }
-`;
+`
 
 export const Alert = ({ onClose, children, title, content, iconType }) => {
   const Icon = () => {
     if (iconType === 'success') {
-      return <SuccessIcon />;
+      return <SuccessIcon />
     } else if (iconType === 'alert') {
-      return;
+      return
     } else if (iconType === 'cartCheck') {
-      return <CartCheckIcon />;
+      return <CartCheckIcon />
     } else if (iconType === 'info') {
-      return <InfoIcon />;
+      return <InfoIcon />
     } else if (iconType === 'celebrate') {
-      return <PartyHornIcon />;
+      return <PartyHornIcon />
     } else if (iconType === 'heartAdd') {
-      return <HeartAdd />;
+      return <HeartAdd />
     } else if (iconType === 'heartRemove') {
-      return < HeartRemove />
+      return <HeartRemove />
     } else if (iconType === 'heartTick') {
-      return < HeartTick />
+      return <HeartTick />
     } else {
-      return <InfoIcon />;
+      return <InfoIcon />
     }
-  };
+  }
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return (
     <AlertContainer>
       <AlertContent>
         {iconType && (
-          <IconWrapper >
+          <IconWrapper>
             <Icon />
           </IconWrapper>
         )}
@@ -117,5 +116,5 @@ export const Alert = ({ onClose, children, title, content, iconType }) => {
         <CloseBtn onClick={onClose}>確定</CloseBtn>
       </AlertContent>
     </AlertContainer>
-  );
-};
+  )
+}

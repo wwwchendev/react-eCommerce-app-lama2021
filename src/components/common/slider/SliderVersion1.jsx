@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import { useState, useEffect } from 'react'
 // import { sliderItems } from '@/utils/data'
-import { md, sm } from '@/components/layout/responsive';
+import { md, sm } from '@/components/layout/responsive'
 import { useNavigate } from 'react-router-dom'
 
 const animationDuration = 10 * 1000
@@ -77,12 +77,11 @@ const Image = styled.img`
   object-fit: cover;
   ${md({ maxHeight: '65%' })}
   ${sm({ maxHeight: '50%' })}
-  /* 禁用拖动和选择 */
-  -webkit-user-drag: none; /* Safari */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* 跨浏览器 */
+  -webkit-user-drag: none; 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none;   
+  user-select: none; 
 `
 const InfoContainer = styled.div`
   flex: 1;
@@ -122,7 +121,6 @@ const Button = styled.button`
   transition: all 0.8s ease;
   &:hover {
     padding: 12px;
-    /* letter-spacing: 12px; */
     opacity: 0.6;
   }
   &:active {
