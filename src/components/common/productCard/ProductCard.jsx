@@ -15,7 +15,7 @@ const ProductCardContainer = styled.div`
     props.$viewMode === 'grid' ? 'center' : 'flex-start'};
   min-height: 200px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    height: ${props => (props.$viewMode === 'grid' ? '' : '240px')};
+    height: ${props => (props.$viewMode === 'grid' ? '' : '200px')};
 
 `
 const ImageContainer = styled(Link)`
@@ -42,7 +42,7 @@ const ImageContainer = styled(Link)`
 })}
   ${xs({
   maxHeight: props => (props.$viewMode === 'grid' ? '180px' : '100%'),
-  minWidth: props => (props.$viewMode === 'grid' ? '100%' : '220px'),
+  minWidth: props => (props.$viewMode === 'grid' ? '100%' : '180px'),
 })}
 `
 const ProductInfo = styled.div`
@@ -68,10 +68,9 @@ const ProductName = styled(Link)`
   line-height: 1.5;
   text-decoration: none;
   color: #333;
-  white-space: ${props => (props.$viewMode === 'grid' ? 'nowrap' : '')};
   font-size: ${props => (props.$viewMode === 'grid' ? '1rem' : '1.5rem')};
-  ${sm({
-  fontSize: props => (props.$viewMode === 'grid' ? '1rem' : '1.3rem'),
+  ${xs({
+  fontSize: props => (props.$viewMode === 'grid' ? '0.8rem' : '1rem'),
 })}
 `
 const ProductDetails = styled.div`
