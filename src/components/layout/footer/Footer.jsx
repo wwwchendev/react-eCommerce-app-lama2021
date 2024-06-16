@@ -1,8 +1,8 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { shopInfo } from '@/utils/data'
 import Icon from '@/components/icon'
-import { Button, IconButton } from '@/components/common'
+import { IconButton } from '@/components/common'
 const { LINE, Instagram, Youtube, FB } = Icon
 import { Container as MuiContainer, Grid } from '@material-ui/core'
 
