@@ -24,14 +24,6 @@ const ImageContainer = styled(Link)`
     object-fit: cover;
     transition: all 0.5s ease-in-out;
   }
-  &:hover {
-    img {
-      scale: 1.1;
-      ${xs({
-  scale: 1
-})}
-    }
-  }
 `
 
 const NewsElement = ({ announcement }) => {

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 //components
 import styled from 'styled-components'
 import NewsElement from './NewsElement'
-import { md, sm } from '@/components/layout/responsive'
+import { md, xs } from '@/components/layout/responsive'
 import customAxios from '@/utils/axios/customAxios'
 
 const Container = styled.div`
@@ -11,11 +11,11 @@ const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem 2rem;
   ${md({
-  gap: '2rem 1.5rem',
+  gap: ' 1.5rem',
 })}
-  ${sm({
+  ${xs({
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '1.5rem 1rem',
+  gap: '1rem',
 })}
 `
 
