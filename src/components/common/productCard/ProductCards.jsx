@@ -13,18 +13,18 @@ const ProductsWrapper = styled.div`
   grid-template-columns: ${props =>
     props.$viewMode === 'grid' ? 'repeat(4, 1fr)' : '1fr'};
   box-sizing: border-box;
-  gap: 1rem; // 这里设置 gap
-
+  gap: 1rem; 
+margin: 0 auto;
   ${md({
       gridTemplateColumns: props =>
         props.$viewMode === 'grid' ? 'repeat(3, 1fr)' : '1fr',
-      gap: '1rem' // 确保在不同屏幕大小下使用相同的 gap
+      gap: '1rem'
     })}
 
   ${sm({
       gridTemplateColumns: props =>
         props.$viewMode === 'grid' ? 'repeat(2, 1fr)' : '1fr',
-      gap: '0.5rem' // 可以根据需要调整 gap
+      gap: '0.5rem'
     })}
 `;
 
