@@ -1,27 +1,13 @@
 const FBIcon = ({ $color = '#000' }) => {
   return (
     <>
-      <svg
-        fill={$color}
-        viewBox='-2 2 26 28'
-        version='1.1'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <g id='SVGRepo_bgCarrier' strokeWidth='0.5'></g>
-        <g
-          id='SVGRepo_tracerCarrier'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        ></g>
-        <g id='SVGRepo_iconCarrier'>
-          <title>facebook</title>
-          <path
-            d='M1.188 5.594h18.438c0.625 0 1.188 0.563 1.188 1.188v18.438c0 0.625-0.563 1.188-1.188 1.188h-18.438c-0.625 0-1.188-0.563-1.188-1.188v-18.438c0-0.625 0.563-1.188 1.188-1.188zM14.781 17.281h2.875l0.125-2.75h-3v-2.031c0-0.781 0.156-1.219 1.156-1.219h1.75l0.063-2.563s-0.781-0.125-1.906-0.125c-2.75 0-3.969 1.719-3.969 3.563v2.375h-2.031v2.75h2.031v7.625h2.906v-7.625z'
-            stroke={$color}
-            strokeWidth='0.8'
-          ></path>
-        </g>
-      </svg>
+      <svg fill={$color} height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+        //  xmlns:xlink="http://www.w3.org/1999/xlink" 
+        viewBox="-143 145 512 512"
+      // xml:space="preserve"
+      ><g id="SVGRepo_bgCarrier"
+        strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round"
+          strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z M169.5,357.6l-2.9,38.3h-39.3v133H77.7v-133H51.2v-38.3h26.5v-25.7c0-11.3,0.3-28.8,8.5-39.7c8.7-11.5,20.6-19.3,41.1-19.3 c33.4,0,47.4,4.8,47.4,4.8l-6.6,39.2c0,0-11-3.2-21.3-3.2c-10.3,0-19.5,3.7-19.5,14v29.9H169.5z"></path> </g></svg>
     </>
   )
 }
