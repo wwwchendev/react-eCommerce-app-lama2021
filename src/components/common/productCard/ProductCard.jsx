@@ -16,6 +16,9 @@ const ProductCardContainer = styled.div`
   min-height: 200px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     height: ${props => (props.$viewMode === 'grid' ? '' : '200px')};
+  ${xs({
+      minWidth: props => (props.$viewMode === 'grid' ? '100%' : '180px'),
+    })}
 
 `
 const ImageContainer = styled(Link)`
