@@ -6,7 +6,7 @@ import Icon from '@/components/icon'
 const { Heart, Cart1, Cart3, HeartRemove } = Icon
 import { IconButton } from '@/components/common'
 import { numberWithCommas } from '@/utils/format.js'
-import { xs, sm } from '@/components/layout/responsive'
+import { xs, sm, md } from '@/components/layout/responsive'
 
 const ProductCardContainer = styled.div`
   display: flex;
@@ -17,13 +17,8 @@ const ProductCardContainer = styled.div`
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     height: ${props => (props.$viewMode === 'grid' ? '' : '240px')};
     width:100%;
-  &:hover {
-    img {
-      scale: 1.1;
-    }
-  }
+
   ${xs({
-      minWidth: '50%',
       height: props => (props.$viewMode === 'grid' ? '' : '250px'),
     })}
 `
@@ -43,9 +38,13 @@ const ImageContainer = styled(Link)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    max-height: 100%;
   }
-    ${sm({
+  
+  ${sm({
+  maxHeight: '350px',
+})}
+  ${xs({
+  maxHeight: props => (props.$viewMode === 'grid' ? '180px' : '100%'),
   minWidth: props => (props.$viewMode === 'grid' ? '100%' : '220px'),
 })}
 `
@@ -72,6 +71,7 @@ const ProductName = styled(Link)`
   line-height: 1.5;
   text-decoration: none;
   color: #333;
+  white-space: nowrap;
   font-size: ${props => (props.$viewMode === 'grid' ? '1rem' : '1.5rem')};
   ${sm({
   fontSize: props => (props.$viewMode === 'grid' ? '1rem' : '1.3rem'),

@@ -34,6 +34,7 @@ const Section = styled.section`
   flex-direction: column;
   gap: 1.5rem;
   padding: 2rem 0 0 0;
+  width: 100%;
   h2 {
     font-size: 30px;
     letter-spacing: 4px;
