@@ -6,7 +6,7 @@ import Icon from '@/components/icon'
 const { Heart, Cart1, Cart3, HeartRemove } = Icon
 import { IconButton } from '@/components/common'
 import { numberWithCommas } from '@/utils/format.js'
-import { md, sm } from '@/components/layout/responsive'
+import { xs, sm } from '@/components/layout/responsive'
 
 const ProductCardContainer = styled.div`
   display: flex;
@@ -16,12 +16,14 @@ const ProductCardContainer = styled.div`
   min-height: 200px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     height: ${props => (props.$viewMode === 'grid' ? '' : '240px')};
+    width:100%;
   &:hover {
     img {
       scale: 1.1;
     }
   }
-  ${sm({
+  ${xs({
+      minWidth: '50%',
       height: props => (props.$viewMode === 'grid' ? '' : '250px'),
     })}
 `
