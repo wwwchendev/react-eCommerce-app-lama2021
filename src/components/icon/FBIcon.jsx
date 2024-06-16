@@ -1,8 +1,8 @@
-const FBIcon = ({ $color }) => {
+const FBIcon = ({ $color = '#000' }) => {
   return (
     <>
       <svg
-        fill={'#000'}
+        fill={$color}
         viewBox='-2 2 26 28'
         version='1.1'
         xmlns='http://www.w3.org/2000/svg'
