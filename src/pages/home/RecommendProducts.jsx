@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import customAxios from '@/utils/axios/customAxios'
 import { ProductCard, ProductCards } from '@/components/common'
 import { useDispatch, useSelector } from 'react-redux'
-import { Grid } from '@material-ui/core'
 
 const Container = styled.div`
   position: relative;

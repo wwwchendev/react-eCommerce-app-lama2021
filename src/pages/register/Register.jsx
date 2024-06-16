@@ -112,7 +112,7 @@ const FormRadioWrapper = styled.div`
   padding: 8px;
   border: ${p => (p.$border ? '2px solid #ce4646' : '')};
   border-radius: 5px;
-  ${xs({ gap: '1rem' })};
+  ${xs({ gap: '4rem' })};
 `
 const FormRadio = styled.div`
 div{
@@ -125,7 +125,7 @@ div{
     position: absolute;
     cursor: pointer;
     font-size: 15px;
-    left: 1rem;
+    left: 1.5rem;
   }
 `
 const Agreement = styled.div`

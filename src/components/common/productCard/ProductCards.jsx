@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { md, sm } from '@/components/layout/responsive'
+import { md, xs } from '@/components/layout/responsive'
 import { ProductCard } from '@/components/common'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartRequests, clearCartError } from '@/store/cart'
@@ -16,14 +16,14 @@ const ProductsWrapper = styled.div`
   gap: 1.5rem;
 
   ${md({
-    gridTemplateColumns: props =>
-      props.$viewMode === 'grid' ? 'repeat(3, 1fr)' : '1fr',
-  })}
-  ${sm({
-    gridTemplateColumns: props =>
-      props.$viewMode === 'grid' ? 'repeat(2, 1fr)' : '1fr',
-    gap: '2rem 0.8rem',
-  })}
+      gridTemplateColumns: props =>
+        props.$viewMode === 'grid' ? 'repeat(3, 1fr)' : '1fr',
+    })}
+  ${xs({
+      gridTemplateColumns: props =>
+        props.$viewMode === 'grid' ? 'repeat(2, 1fr)' : '1fr',
+      gap: '1rem',
+    })}
 `
 
 export const ProductCards = ({ $viewMode, products }) => {
