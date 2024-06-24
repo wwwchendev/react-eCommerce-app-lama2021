@@ -1,12 +1,12 @@
 //react
-import { useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 //redux
 import { useConfigs } from '../../context/ConfigsContext'
 //components
 import styled from 'styled-components'
 import * as Layout from '@/components/layout'
-const { SEO } = Layout
+const { SEO, ScrollToTop, PopupMessage } = Layout
 import { Slider } from '@/components/common'
 import ProductCategories from './ProductCategories'
 import RecommendProducts from './RecommendProducts'
@@ -67,6 +67,7 @@ export const Home = () => {
   const announcement = CSSVariables.announcement
   const navbarOffset = navbar.height
 
+  const contentRef = useRef(null)
   const slides = [
     {
       id: 0,
@@ -140,7 +141,9 @@ export const Home = () => {
             了解更多
           </MoreButton>
         </Section>
+        <ScrollToTop $contentRef={contentRef} />
       </StyledContainer>
+      <PopupMessage />
       <Layout.Footer />
     </>
   )

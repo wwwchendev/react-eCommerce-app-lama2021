@@ -172,11 +172,11 @@ export const ProductList = () => {
       <StyledContainer>
         <Breadcrumb paths={paths} />
         <Grid container justifyContent='center' spacing={3}>
-          <Aside item xs={12} md={2}>
+          <Aside item xs={12} md={3}>
             <ProductCategoryList />
           </Aside>
 
-          <Grid item xs={12} md={10}>
+          <Grid item xs={12} md={9}>
             <SorterWidget>
               {products.length > 0 ? (
                 <p>

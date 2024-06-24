@@ -814,7 +814,7 @@ export const Checkout = () => {
           }}
         />
       )}
-      <StyledContainer style={{ border: '1px solid red' }}>
+      <StyledContainer >
         <Grid
           container
           direction='column'

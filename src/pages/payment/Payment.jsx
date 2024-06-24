@@ -303,7 +303,7 @@ export const Payment = () => {
               }}
             />
           )}
-          <StyledContainer style={{ border: '1px solid red' }}>
+          <StyledContainer>
             <Grid
               container
               direction='column'

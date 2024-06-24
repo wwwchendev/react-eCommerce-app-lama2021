@@ -110,8 +110,8 @@ const Navigate = styled(Link)`
   border-radius: 5px;
   box-sizing: border-box;
   position: absolute;
-  left: ${p => (p.$type === 'prev' ? '0' : '')};
-  right: ${p => (p.$type === 'next' ? '0' : '')};
+  left: ${p => (p.$type === 'prev' ? '' : '0')};
+  right: ${p => (p.$type === 'next' ? '' : '0')};
   max-width: 40%;
   div {
     display: flex;
@@ -222,27 +222,27 @@ export const SingleNews = () => {
           </Main>
         </Wrapper>
         <Bottom>
-          {navItems.prev && (
+          {navItems.next && (
             <Navigate
-              to={`/news/${navItems.prev?.title}`}
+              to={`/news/${navItems.next?.title}`}
               disabled={navItems.prev}
-              $type='prev'
+              $type='next'
             >
               <div>
                 <ArrowBack />
-                上一則
+                下一則
               </div>
-              <p>{navItems.prev?.title}</p>
+              <p>{navItems.next?.title}</p>
             </Navigate>
           )}
 
-          {navItems.next && (
-            <Navigate to={`/news/${navItems.next?.title}`} $type='next'>
+          {navItems.prev && (
+            <Navigate to={`/news/${navItems.prev?.title}`} $type='prev'>
               <div>
-                下一則
+                上一則
                 <ArrowForward />
               </div>
-              <p>{navItems.next?.title}</p>
+              <p>{navItems.prev?.title}</p>
             </Navigate>
           )}
         </Bottom>
