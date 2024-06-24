@@ -476,6 +476,7 @@ const UserPages = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap:1rem;
 `
 const UserPagesRight = styled.div`
   display: flex;
@@ -1329,41 +1330,40 @@ export const Navbar = () => {
                         }}
                       >
                         <IconButton icon={People} />
-                        <UserName>{`${user.lastName} ${user.firstName} `}</UserName>
+                        <UserName>
+                          {`${user.lastName} ${user.firstName} `}
+                        </UserName>
                         <IconButton
                           icon={ArrowDown}
                           $size='1rem'
                           $hoverColor={'#aa5d5d'}
                         />
 
-                        <UserDropdown $display={showDropdown.user}>
-                          <ul>
-                            <li>
-                              <Link
-                                to='/orders'
-                                onClick={() => {
-                                  closeSidebarMenu()
-                                }}
-                              >
-                                訂單紀錄
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                to='/account'
-                                onClick={() => {
-                                  closeSidebarMenu()
-                                }}
-                              >
-                                修改會員資料
-                              </Link>
-                            </li>
-                            <li>
-                              <Link onClick={handleLogout}>登出</Link>
-                            </li>
-                          </ul>
-                        </UserDropdown>
                       </UsernameWrapper>
+                      <UserDropdown $display={showDropdown.user}>
+                        <ul>
+                          <li
+                            onClick={() => {
+                              closeSidebarMenu()
+                            }}>
+                            <Link
+                              to='/orders'
+                            >
+                              訂單紀錄
+                            </Link>
+                          </li>
+                          <li onClick={() => {
+                            closeSidebarMenu()
+                          }}>
+                            <Link to='/account'  >
+                              修改會員資料
+                            </Link>
+                          </li>
+                          <li>
+                            <Link onClick={handleLogout}>登出</Link>
+                          </li>
+                        </ul>
+                      </UserDropdown>
 
                       <UserPagesRight>
                         <IconButton

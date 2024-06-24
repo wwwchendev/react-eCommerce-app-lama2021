@@ -7,7 +7,7 @@ import { useConfigs } from '../../../context/ConfigsContext'
 import styled from 'styled-components'
 import { CloseRounded } from '@material-ui/icons'
 
-const animationDuration = '4000'
+const animationDuration = '5000'
 const Container = styled.div`
   height: ${p => p.$elHeight.announcement}rem;
   background-color: #ac7a71;

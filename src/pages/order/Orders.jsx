@@ -47,15 +47,15 @@ const Table = styled.table`
   th {
     padding: 8px;
     ${md({
-      display: 'none',
-    })}
+  display: 'none',
+})}
   }
   tbody {
     ${md({
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-    })}
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+})}
   }
   tbody tr {
     cursor: pointer;
@@ -80,23 +80,23 @@ const Table = styled.table`
 
     div {
       ${md({
-        display: 'flex',
-        gap: '0.5rem',
-      })}
+  display: 'flex',
+  gap: '0.5rem',
+})}
     }
     &::before {
       content: attr(data-cell);
       display: none;
       ${md({
-        display: 'block',
-        width: '8rem',
-      })}
+  display: 'block',
+  width: '8rem',
+})}
     }
 
     ${md({
-      display: 'flex',
-      alignItems: 'center',
-    })}
+  display: 'flex',
+  alignItems: 'center',
+})}
   }
 `
 
@@ -104,13 +104,13 @@ const NoOrderFound = styled.tr`
   td {
     height: 2rem;
     ${md({
-      display: 'flex',
-      justifyContent: 'center',
-    })}
+  display: 'flex',
+  justifyContent: 'center',
+})}
     &::before {
       ${md({
-        display: 'none',
-      })}
+  display: 'none',
+})}
     }
 
     &:hover {
@@ -182,9 +182,9 @@ const ViewButton = styled(Button)`
     height: 10px;
   }
   ${md({
-    top: '100%',
-    transform: 'translateY(-150%)',
-  })}
+  top: '100%',
+  transform: 'translateY(-150%)',
+})}
 `
 
 export const Orders = () => {
@@ -290,6 +290,15 @@ export const Orders = () => {
                     待取貨{' '}
                     <span>
                       ({filterOrders(orderState.data, '待取貨').length})
+                    </span>
+                  </Button>
+                  <Button
+                    onClick={() => setFilterStatus('已取貨')}
+                    $actived={filterStatus === '已取貨'}
+                  >
+                    已取貨{' '}
+                    <span>
+                      ({filterOrders(orderState.data, '已取貨').length})
                     </span>
                   </Button>
                   <Button

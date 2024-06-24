@@ -137,7 +137,11 @@ export const ForgetPassword = () => {
 
         setShowSuccess(true)
       }
-      await fetchForgetPassword()
+      try {
+        await fetchForgetPassword()
+      } catch (error) {
+        setPromptMessage({ email: error.response.data.error.forgetPassword })
+      }
       setLoading(false)
     } else {
       setPromptMessage({ email: '電子信箱欄位不可為空' })

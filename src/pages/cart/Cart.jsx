@@ -29,8 +29,8 @@ const StyledContainer = styled(Container)`
     margin-bottom: 2rem;
   }
   ${sm({
-    padding: '8rem 0 ',
-  })}
+  padding: '8rem 0 ',
+})}
 `
 
 //表格--商品資訊
@@ -81,8 +81,8 @@ const ProductInfo = styled.div`
     font-weight: bold;
     color: #4e4e4e;
     ${sm({
-      fontSize: '20px',
-    })}
+  fontSize: '20px',
+})}
   }
   span {
     font-size: 14px;
@@ -122,9 +122,9 @@ const NumberInputWrapper = styled.div`
     font-size: 14px;
   }
   ${sm({
-    justifyContent: 'flex-end',
-    margin: '0',
-  })}
+  justifyContent: 'flex-end',
+  margin: '0',
+})}
 `
 const Button = styled.button`
   width: 2rem;
@@ -189,9 +189,9 @@ const SummarizeWrapper = styled.div`
     gap: 3rem;
 
     ${sm({
-      gap: '0rem',
-      justifyContent: 'space-between',
-    })}
+  gap: '0rem',
+  justifyContent: 'space-between',
+})}
   }
   span {
     color: #d31414;
@@ -199,10 +199,10 @@ const SummarizeWrapper = styled.div`
     letter-spacing: 1px;
   }
   ${sm({
-    gap: '1rem',
-    padding: '4rem 2rem',
-    justifyContent: 'space-between',
-  })}
+  gap: '1rem',
+  padding: '4rem 2rem',
+  justifyContent: 'space-between',
+})}
 `
 const SummarizeContainer = styled(Container)`
   display: flex;
@@ -374,7 +374,7 @@ export const Cart = () => {
           onConfirm={showConfirm.onConfirm}
         />
       )}
-      <StyledContainer style={{ border: '1px solid red' }}>
+      <StyledContainer>
         <Grid
           container
           direction='column'
@@ -403,7 +403,7 @@ export const Cart = () => {
           <Grid container justifyContent='center' alignItems='center'>
             <Grid item xs={12} sm={10} md={8} lg={7}>
               {cartState.data.products.length === 0 ||
-              cartState.data.username !== authUser?.username ? (
+                cartState.data.username !== authUser?.username ? (
                 <CartIconWrapper>
                   <div>
                     <Cart2 $color={'#666666'} />

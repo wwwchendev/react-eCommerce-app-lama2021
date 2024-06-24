@@ -48,7 +48,7 @@ const FormWrapper = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  height: 340px;
+  height: 360px;
   position: relative;
   a {
     position: absolute;
@@ -131,10 +131,10 @@ const Input = styled.input`
 // 修改 FormFooter 的样式
 const FormFooter = styled.div`
   position: relative;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   ${PromptMessage} {
     position: absolute;
-    bottom: -1.2rem;
+    bottom: -3rem;
     left: 0;
   }
 `

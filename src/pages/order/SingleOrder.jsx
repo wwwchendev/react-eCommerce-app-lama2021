@@ -33,7 +33,6 @@ import { useRef } from 'react'
 import { Container, Grid } from '@material-ui/core'
 
 const StyledContainer = styled(Container)`
-  border: 1px solid red;
   padding: 2rem 0;
   position: relative;
 `
@@ -737,12 +736,11 @@ export const SingleOrder = () => {
           <Grid
             container
             justifyContent='center'
-            style={{ border: '1px solid red' }}
           >
-            <Aside item xs={12} md={2} style={{ border: '1px solid red' }}>
+            <Aside item xs={12} md={2}>
               <AccountSettingList />
             </Aside>
-            <Grid item xs={12} md={10} style={{ border: '1px solid red' }}>
+            <Grid item xs={12} md={10} >
               {loading ? (
                 <Layout.Loading
                   type={'spin'}
@@ -938,10 +936,9 @@ export const SingleOrder = () => {
                           </>
                         )}
 
-                        <p>
-                          {closureInfo?.time &&
-                            `結案時間: ${getDateString(new Date(closureInfo?.time), '/')} ${closureInfo?.actionType}`}
-                        </p>
+                        {closureInfo?.time && <p>結案時間: {getDateString(new Date(closureInfo?.time), '/')} {closureInfo?.actionType}</p>}
+
+                        {closureInfo?.memo && <p>{closureInfo?.memo} </p>}
                       </Section>
                       <Section>
                         <h3>運送資訊</h3>
@@ -1010,7 +1007,7 @@ export const SingleOrder = () => {
                         <p>
                           收件人電話:{' '}
                           {maskPhoneNumber(
-                            orderData?.logistic?.receiver?.receiversmNumber,
+                            orderData?.logistic?.receiver?.receiverMobileNumber,
                           )}
                         </p>
                         <p>備註事項: {orderData?.memo}</p>
@@ -1025,7 +1022,7 @@ export const SingleOrder = () => {
                           {orderData?.userInfo?.firstName}
                         </p>
                         <p>信箱: {orderData?.userInfo?.email}</p>
-                        <p>電話: {maskPhoneNumber(orderData?.userInfo?.sm)}</p>
+                        <p>電話: {maskPhoneNumber(orderData?.userInfo?.mobile)}</p>
                       </Section>
                       <Section>
                         <h3>付款資訊</h3>
